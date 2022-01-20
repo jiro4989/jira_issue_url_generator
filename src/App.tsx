@@ -8,12 +8,13 @@ import {
   priorityString,
   allPriorities,
 } from './lib/util'
+import InputComponent, { InputValue } from './components/InputComponent'
 
 function App() {
   const [jiraURL, setJIRAURL] = useState('')
-  const [jiraBaseURL, setJIRABaseURL] = useState('')
-  const [projectID, setProjectID] = useState(1)
-  const [issueType, setIssueType] = useState(1)
+  const [jiraBaseURL, setJIRABaseURL] = useState('' as InputValue)
+  const [projectID, setProjectID] = useState(1 as InputValue)
+  const [issueType, setIssueType] = useState(1 as InputValue)
   const [summary, setSummary] = useState('')
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState(priorityMedium)
@@ -114,36 +115,30 @@ function App() {
 
         <hr />
 
-        <div>
-          <label>Jira Base URL</label>
-          <input
-            className={requiredValue(jiraBaseURL)}
-            type="text"
-            onChange={(e) => setJIRABaseURL(e.target.value)}
-            value={jiraBaseURL}
-            placeholder="https://example.com"
-          />
-        </div>
-
-        <div>
-          <label>Project ID</label>
-          <input
-            className={requiredValue('' + projectID)}
-            type="number"
-            onChange={(e) => setProjectID(parseInt(e.target.value))}
-            value={projectID}
-          />
-        </div>
-
-        <div>
-          <label>IssueType</label>
-          <input
-            className={requiredValue('' + issueType)}
-            type="number"
-            onChange={(e) => setIssueType(parseInt(e.target.value))}
-            value={issueType}
-          />
-        </div>
+        <InputComponent
+          value={jiraBaseURL}
+          setValue={setJIRABaseURL}
+          type="text"
+          label="Jira Base URL"
+          isRequired={true}
+          placeholder="https://example.com"
+        />
+        <InputComponent
+          value={projectID}
+          setValue={setProjectID}
+          type="number"
+          label="Project ID"
+          isRequired={true}
+          placeholder="1"
+        />
+        <InputComponent
+          value={issueType}
+          setValue={setIssueType}
+          type="number"
+          label="Issue Type"
+          isRequired={true}
+          placeholder="1"
+        />
 
         <div>
           <label>Priority</label>
