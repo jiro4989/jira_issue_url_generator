@@ -1,5 +1,6 @@
 {
   "name": "jira_issue_url_generator",
+  "homepage": "https://jiro4989.github.io/jira_issue_url_generator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
