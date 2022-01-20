@@ -3,11 +3,8 @@ name: pages
 
 "on":
   push:
-    paths-ignore:
-      - 'LICENSE'
-      - 'README.*'
-    branches:
-      - main
+    tags:
+      - 'v*'
 
 jobs:
   pages:
