@@ -5,6 +5,7 @@ import { JIRAURL, parseQueryParam } from './lib/util'
 function App() {
   const [jiraURL, setJIRAURL] = useState('')
   const [jiraBaseURL, setJIRABaseURL] = useState('')
+  const [projectID, setProjectID] = useState(1)
   const [issueType, setIssueType] = useState(1)
   const [summary, setSummary] = useState('')
   const [description, setDescription] = useState('')
@@ -13,6 +14,7 @@ function App() {
   function applyParams() {
     const jira: JIRAURL = parseQueryParam(jiraURL)
     setJIRABaseURL(jira.baseURL)
+    setProjectID(jira.projectID)
     setIssueType(jira.issueType)
     setSummary(jira.summary)
     setDescription(jira.description)
@@ -33,7 +35,11 @@ function App() {
     setLabels([...labels])
   }
 
-  const qp = [`issuetype=${issueType}`, `summary=${summary}`]
+  const qp = [
+    `pid=${projectID}`,
+    `issuetype=${issueType}`,
+    `summary=${summary}`,
+  ]
   if (description !== '') {
     qp.push(`description=${description}`)
   }
@@ -94,6 +100,16 @@ function App() {
             type="text"
             onChange={(e) => setJIRABaseURL(e.target.value)}
             value={jiraBaseURL}
+          />
+        </div>
+
+        <div>
+          <p>Project ID</p>
+          <input
+            className={requiredValue('' + projectID)}
+            type="number"
+            onChange={(e) => setProjectID(parseInt(e.target.value))}
+            value={projectID}
           />
         </div>
 
