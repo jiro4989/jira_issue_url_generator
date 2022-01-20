@@ -105,6 +105,7 @@ function App() {
             type="text"
             onChange={(e) => setJIRAURL(e.target.value)}
             autoFocus
+            placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
           />
           <button className="ApplyButton" onClick={(e) => applyParams()}>
             Apply
@@ -120,6 +121,7 @@ function App() {
             type="text"
             onChange={(e) => setJIRABaseURL(e.target.value)}
             value={jiraBaseURL}
+            placeholder="https://example.com"
           />
         </div>
 
