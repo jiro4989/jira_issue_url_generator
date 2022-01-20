@@ -46,20 +46,27 @@ function App() {
   const labelsElement = labels.map((e, i) => (
     <li key={i}>
       <input
-        className='LabelInput'
+        className="LabelInput"
         type="text"
         value={e}
         onChange={(v) => changeLabel(i, v.target.value)}
       />
-      <button className='LabelButton' onClick={(e) => deleteLabelElement(i)}>Delete</button>
+      <button className="LabelButton" onClick={(e) => deleteLabelElement(i)}>
+        Delete
+      </button>
     </li>
   ))
 
   function requiredValue(value: string): string {
-    return value.trim() !== "" ? "StateOK" : "StateNG"
+    return value.trim() !== '' ? 'StateOK' : 'StateNG'
   }
 
-  const generatedURLElement = summary === '' || jiraBaseURL === '' ? <p>Please fix error input</p> : <a href={generatedURL}>{summary}</a>
+  const generatedURLElement =
+    summary === '' || jiraBaseURL === '' ? (
+      <p>Please fix error input</p>
+    ) : (
+      <a href={generatedURL}>{summary}</a>
+    )
 
   return (
     <div className="App">
@@ -69,7 +76,9 @@ function App() {
         <div>
           <p>Set parameters from JIRA URL</p>
           <input type="text" onChange={(e) => setJIRAURL(e.target.value)} />
-          <button className='ApplyButton' onClick={(e) => applyParams()}>Apply</button>
+          <button className="ApplyButton" onClick={(e) => applyParams()}>
+            Apply
+          </button>
         </div>
 
         <hr />
@@ -115,7 +124,9 @@ function App() {
         <div>
           <p>Labels</p>
           <p>
-            <button className='AddButton' onClick={(e) => addLabelElement()}>Add</button>
+            <button className="AddButton" onClick={(e) => addLabelElement()}>
+              Add
+            </button>
           </p>
           <ul>{labelsElement}</ul>
         </div>
