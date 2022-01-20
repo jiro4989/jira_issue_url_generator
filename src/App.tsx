@@ -23,6 +23,11 @@ function App() {
     setLabels([...labels, ""])
   }
 
+  function deleteLabelElement(index: number) {
+    labels.splice(index, 1)
+    setLabels([...labels])
+  }
+
   function changeLabel(index: number, value: string) {
     labels[index] = value
     setLabels([...labels])
@@ -39,6 +44,7 @@ function App() {
 
   const labelsElement = labels.map((e, i) => <li key={i}>
     <input type="text" value={e} onChange={(v) => changeLabel(i, v.target.value)} />
+    <button onClick={(e) => deleteLabelElement(i)}>-</button>
   </li>)
 
   return (
