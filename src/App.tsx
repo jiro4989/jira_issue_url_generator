@@ -10,8 +10,6 @@ function App() {
   const [description, setDescription] = useState("")
   const [labels, setLabels] = useState([] as string[])
 
-  const labelsElement = labels.map(e => <li><input type="text" value={e}></input></li>)
-
   function applyParams() {
     const jira: JIRAURL = parseQueryParam(jiraURL)
     setJIRABaseURL(jira.baseURL)
@@ -19,6 +17,15 @@ function App() {
     setSummary(jira.summary)
     setDescription(jira.description)
     setLabels(jira.labels)
+  }
+
+  function addLabelElement() {
+    setLabels([...labels, ""])
+  }
+
+  function changeLabel(index: number, value: string) {
+    labels[index] = value
+    setLabels([...labels])
   }
 
   const qp = [
@@ -29,6 +36,10 @@ function App() {
   labels.map((e) => `labels=${e}`).forEach((e) => qp.push(e))
   const queryParams = qp.join("&")
   const generatedURL = encodeURI(`${jiraBaseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`)
+
+  const labelsElement = labels.map((e, i) => <li key={i}>
+    <input type="text" value={e} onChange={(v) => changeLabel(i, v.target.value)} />
+  </li>)
 
   return (
     <div className="App">
@@ -73,6 +84,9 @@ function App() {
       <div>
         <p>
           Labels
+        </p>
+        <p>
+          <button onClick={(e) => addLabelElement()}>+</button>
         </p>
         <ul>
           {labelsElement}
