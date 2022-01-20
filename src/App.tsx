@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
 import './App.css'
-import { JIRAURL, parseQueryParam } from './lib/util'
+import {
+  JIRAURL,
+  parseQueryParam,
+  priorityMedium,
+  Priority,
+  priorityString,
+  allPriorities,
+} from './lib/util'
 
 function App() {
   const [jiraURL, setJIRAURL] = useState('')
@@ -9,6 +16,7 @@ function App() {
   const [issueType, setIssueType] = useState(1)
   const [summary, setSummary] = useState('')
   const [description, setDescription] = useState('')
+  const [priority, setPriority] = useState(priorityMedium)
   const [labels, setLabels] = useState([] as string[])
 
   function applyParams() {
@@ -38,6 +46,7 @@ function App() {
   const qp = [
     `pid=${projectID}`,
     `issuetype=${issueType}`,
+    `priority=${priority}`,
     `summary=${summary}`,
   ]
   if (description !== '') {
@@ -73,6 +82,17 @@ function App() {
     ) : (
       <a href={generatedURL}>{summary}</a>
     )
+
+  const prioritySelectionElement = (
+    <select
+      value={priority}
+      onChange={(e) => setPriority(parseInt(e.target.value) as Priority)}
+    >
+      {allPriorities.map((e) => (
+        <option value={e}>{priorityString(e)}</option>
+      ))}
+    </select>
+  )
 
   return (
     <div className="App">
@@ -121,6 +141,11 @@ function App() {
             onChange={(e) => setIssueType(parseInt(e.target.value))}
             value={issueType}
           />
+        </div>
+
+        <div>
+          <p>Priority</p>
+          {prioritySelectionElement}
         </div>
 
         <div>
