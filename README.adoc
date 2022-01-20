@@ -1,0 +1,15 @@
+= jira_issue_url_generator
+:toc: left
+:sectnums:
+
+https://www.atlassian.com/software/jira[JIRA]の issues を作成するURLをUIで作れるようにします。
+静的なアプリなのでGitHub Pagesでホスティングします。
+
+== 開発者向け
+
+サーバの起動は以下。
+
+[source,bash]
+----
+npm start
+----
