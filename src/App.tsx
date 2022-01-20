@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {JIRAURL, parseQueryParam } from './lib/util';
 
@@ -47,28 +46,28 @@ function App() {
         <p>
           Jira Base URL
         </p>
-        <input type="text" onChange={(e) => setJIRABaseURL(e.target.value)} />
+        <input type="text" onChange={(e) => setJIRABaseURL(e.target.value)} value={jiraBaseURL} />
       </div>
 
       <div>
         <p>
           IssueType
         </p>
-        <input type="number" onChange={(e) => setIssueType(parseInt(e.target.value))} />
+        <input type="number" onChange={(e) => setIssueType(parseInt(e.target.value))} value={issueType} />
       </div>
 
       <div>
         <p>
           Summary
         </p>
-        <input type="text" onChange={(e) => setSummary(e.target.value)} />
+        <input type="text" onChange={(e) => setSummary(e.target.value)} value={summary} />
       </div>
 
       <div>
         <p>
           Description
         </p>
-        <textarea onChange={(e) => setDescription(e.target.value)} />
+        <textarea onChange={(e) => setDescription(e.target.value)} value={description} />
       </div>
 
       <div>
