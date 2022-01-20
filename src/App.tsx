@@ -75,7 +75,7 @@ function App() {
         <h2>INPUT</h2>
         <div>
           <p>Set parameters from JIRA URL</p>
-          <input type="text" onChange={(e) => setJIRAURL(e.target.value)} />
+          <input type="text" onChange={(e) => setJIRAURL(e.target.value)} autoFocus />
           <button className="ApplyButton" onClick={(e) => applyParams()}>
             Apply
           </button>
