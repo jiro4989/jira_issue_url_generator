@@ -100,7 +100,7 @@ function App() {
       <section>
         <h2>INPUT</h2>
         <div>
-          <p>Set parameters from JIRA URL</p>
+          <label>Set parameters from JIRA URL</label>
           <input
             type="text"
             onChange={(e) => setJIRAURL(e.target.value)}
@@ -114,7 +114,7 @@ function App() {
         <hr />
 
         <div>
-          <p>Jira Base URL</p>
+          <label>Jira Base URL</label>
           <input
             className={requiredValue(jiraBaseURL)}
             type="text"
@@ -124,7 +124,7 @@ function App() {
         </div>
 
         <div>
-          <p>Project ID</p>
+          <label>Project ID</label>
           <input
             className={requiredValue('' + projectID)}
             type="number"
@@ -134,7 +134,7 @@ function App() {
         </div>
 
         <div>
-          <p>IssueType</p>
+          <label>IssueType</label>
           <input
             className={requiredValue('' + issueType)}
             type="number"
@@ -144,12 +144,12 @@ function App() {
         </div>
 
         <div>
-          <p>Priority</p>
+          <label>Priority</label>
           {prioritySelectionElement}
         </div>
 
         <div>
-          <p>Summary</p>
+          <label>Summary</label>
           <input
             className={requiredValue(summary)}
             type="text"
@@ -159,7 +159,7 @@ function App() {
         </div>
 
         <div>
-          <p>Description</p>
+          <label>Description</label>
           <textarea
             onChange={(e) => setDescription(e.target.value)}
             value={description}
@@ -180,7 +180,7 @@ function App() {
       <section>
         <h2>OUTPUT</h2>
         <div>
-          <p>Generated URL</p>
+          <label>Generated URL</label>
           {generatedURLElement}
         </div>
       </section>
