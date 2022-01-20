@@ -46,73 +46,88 @@ function App() {
   const labelsElement = labels.map((e, i) => (
     <li key={i}>
       <input
+        className='LabelInput'
         type="text"
         value={e}
         onChange={(v) => changeLabel(i, v.target.value)}
       />
-      <button onClick={(e) => deleteLabelElement(i)}>-</button>
+      <button className='LabelButton' onClick={(e) => deleteLabelElement(i)}>Delete</button>
     </li>
   ))
 
+  function requiredValue(value: string): string {
+    return value.trim() !== "" ? "StateOK" : "StateNG"
+  }
+
+  const generatedURLElement = summary === '' || jiraBaseURL === '' ? <p>Please fix error input</p> : <a href={generatedURL}>{summary}</a>
+
   return (
     <div className="App">
-      <div>
-        <p>Set parameters from JIRA URL</p>
-        <input type="text" onChange={(e) => setJIRAURL(e.target.value)} />
-        <button onClick={(e) => applyParams()}>Apply</button>
-      </div>
+      <h1>JIRA ISSUE URL GENERATOR</h1>
+      <section>
+        <h2>INPUT</h2>
+        <div>
+          <p>Set parameters from JIRA URL</p>
+          <input type="text" onChange={(e) => setJIRAURL(e.target.value)} />
+          <button className='ApplyButton' onClick={(e) => applyParams()}>Apply</button>
+        </div>
 
-      <hr />
+        <hr />
 
-      <div>
-        <p>Jira Base URL</p>
-        <input
-          type="text"
-          onChange={(e) => setJIRABaseURL(e.target.value)}
-          value={jiraBaseURL}
-        />
-      </div>
+        <div>
+          <p>Jira Base URL</p>
+          <input
+            className={requiredValue(jiraBaseURL)}
+            type="text"
+            onChange={(e) => setJIRABaseURL(e.target.value)}
+            value={jiraBaseURL}
+          />
+        </div>
 
-      <div>
-        <p>IssueType</p>
-        <input
-          type="number"
-          onChange={(e) => setIssueType(parseInt(e.target.value))}
-          value={issueType}
-        />
-      </div>
+        <div>
+          <p>IssueType</p>
+          <input
+            className={requiredValue('' + issueType)}
+            type="number"
+            onChange={(e) => setIssueType(parseInt(e.target.value))}
+            value={issueType}
+          />
+        </div>
 
-      <div>
-        <p>Summary</p>
-        <input
-          type="text"
-          onChange={(e) => setSummary(e.target.value)}
-          value={summary}
-        />
-      </div>
+        <div>
+          <p>Summary</p>
+          <input
+            className={requiredValue(summary)}
+            type="text"
+            onChange={(e) => setSummary(e.target.value)}
+            value={summary}
+          />
+        </div>
 
-      <div>
-        <p>Description</p>
-        <textarea
-          onChange={(e) => setDescription(e.target.value)}
-          value={description}
-        />
-      </div>
+        <div>
+          <p>Description</p>
+          <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+          />
+        </div>
 
-      <div>
-        <p>Labels</p>
-        <p>
-          <button onClick={(e) => addLabelElement()}>+</button>
-        </p>
-        <ul>{labelsElement}</ul>
-      </div>
+        <div>
+          <p>Labels</p>
+          <p>
+            <button className='AddButton' onClick={(e) => addLabelElement()}>Add</button>
+          </p>
+          <ul>{labelsElement}</ul>
+        </div>
+      </section>
 
-      <hr />
-
-      <div>
-        <p>Generated URL</p>
-        <a href={generatedURL}>{summary}</a>
-      </div>
+      <section>
+        <h2>OUTPUT</h2>
+        <div>
+          <p>Generated URL</p>
+          {generatedURLElement}
+        </div>
+      </section>
     </div>
   )
 }
