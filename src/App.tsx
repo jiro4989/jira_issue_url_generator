@@ -5,7 +5,6 @@ import {
   parseQueryParam,
   priorityMedium,
   Priority,
-  priorityHighest,
   priorityString,
   allPriorities,
 } from './lib/util'
