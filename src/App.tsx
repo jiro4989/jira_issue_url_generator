@@ -35,9 +35,11 @@ function App() {
 
   const qp = [
     `issuetype=${issueType}`,
-    `summary=${summary}`,
-    `description=${description}`
+    `summary=${summary}`
   ]
+  if (description !== "") {
+    qp.push(`description=${description}`)
+  }
   labels.map((e) => `labels=${e}`).forEach((e) => qp.push(e))
   const queryParams = qp.join("&")
   const generatedURL = encodeURI(`${jiraBaseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`)
