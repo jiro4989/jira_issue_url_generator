@@ -5,7 +5,7 @@ import {JIRAURL, parseQueryParam } from './lib/util';
 function App() {
   const [jiraURL, setJIRAURL] = useState("")
   const [jiraBaseURL, setJIRABaseURL] = useState("")
-  const [issueType, setIssueType] = useState(0)
+  const [issueType, setIssueType] = useState(1)
   const [summary, setSummary] = useState("")
   const [description, setDescription] = useState("")
   const [labels, setLabels] = useState([] as string[])
