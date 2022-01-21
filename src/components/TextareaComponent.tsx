@@ -12,10 +12,7 @@ export default function TextareaComponent({
   return (
     <div>
       <label>{label}</label>
-      <textarea
-        onChange={(e) => setValue(e.target.value)}
-        value={value}
-      />
+      <textarea onChange={(e) => setValue(e.target.value)} value={value} />
     </div>
   )
 }
