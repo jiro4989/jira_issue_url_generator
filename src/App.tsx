@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
+
 import './App.css'
 import {
   JIRAURL,
   parseQueryParam,
-  priorityMedium,
-  Priority,
-  priorityString,
-  allPriorities,
 } from './lib/util'
+import { priorityMedium, allPriorities, priority2Name, Priority } from './types/Priority'
+import SelectComponent from './components/SelectComponent'
 import InputComponent, { InputValue } from './components/InputComponent'
 
 function App() {
@@ -80,17 +79,6 @@ function App() {
       <a href={generatedURL}>{summary}</a>
     )
 
-  const prioritySelectionElement = (
-    <select
-      value={priority}
-      onChange={(e) => setPriority(parseInt(e.target.value) as Priority)}
-    >
-      {allPriorities.map((e) => (
-        <option value={e}>{priorityString(e)}</option>
-      ))}
-    </select>
-  )
-
   return (
     <div className="App">
       <h1>JIRA ISSUE URL GENERATOR</h1>
@@ -119,6 +107,7 @@ function App() {
           isRequired={true}
           placeholder="https://example.com"
         />
+
         <InputComponent
           value={projectID}
           setValue={setProjectID}
@@ -127,6 +116,7 @@ function App() {
           isRequired={true}
           placeholder="1"
         />
+
         <InputComponent
           value={issueType}
           setValue={setIssueType}
@@ -136,10 +126,13 @@ function App() {
           placeholder="1"
         />
 
-        <div>
-          <label>Priority</label>
-          {prioritySelectionElement}
-        </div>
+        <SelectComponent<Priority>
+          value={priority}
+          setValue={setPriority}
+          optionValues={allPriorities}
+          converter={priority2Name}
+          label='Priority'
+        />
 
         <InputComponent
           value={summary}
