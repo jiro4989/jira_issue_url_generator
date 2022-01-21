@@ -33,21 +33,16 @@ function App() {
     setLabels(jira.labels)
   }
 
-  const qp = [
-    `pid=${projectID}`,
-    `issuetype=${issueType}`,
-    `priority=${priority}`,
-    `summary=${summary}`,
-  ]
-  if (description !== '') {
-    qp.push(`description=${description}`)
-  }
-  labels.map((e) => `labels=${e}`).forEach((e) => qp.push(e))
-  const queryParams = qp.join('&')
-  const generatedURL = encodeURI(
-    `${jiraBaseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`
+  const jira = new JIRAURL(
+    jiraBaseURL as string,
+    projectID as number,
+    issueType as number,
+    summary as string,
+    description,
+    priority,
+    labels
   )
-
+  const generatedURL = jira.generateURL()
   const generatedURLElement =
     summary === '' || jiraBaseURL === '' ? (
       <p>Please fix error input</p>

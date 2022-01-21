@@ -10,6 +10,26 @@ export class JIRAURL {
     public priority: number,
     public labels: string[]
   ) {}
+
+  generateURL(): string {
+    const qp = [
+      `pid=${this.projectID}`,
+      `issuetype=${this.issueType}`,
+      `priority=${this.priority}`,
+      `summary=${this.summary}`,
+    ]
+    if (this.description !== '') {
+      qp.push(`description=${this.description}`)
+    }
+    this.labels.map((e) => `labels=${e}`).forEach((e) => qp.push(e))
+
+    const queryParams = qp.join('&')
+    const url = encodeURI(
+      `${this.baseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`
+    )
+
+    return url
+  }
 }
 
 export function parseQueryParam(url: string): JIRAURL {
