@@ -10,6 +10,7 @@ import {
 } from './types/Priority'
 import SelectComponent from './components/SelectComponent'
 import InputComponent, { InputValue } from './components/InputComponent'
+import TextareaComponent from './components/TextareaComponent'
 
 function App() {
   const [jiraURL, setJIRAURL] = useState('')
@@ -145,13 +146,11 @@ function App() {
           placeholder=""
         />
 
-        <div>
-          <label>Description</label>
-          <textarea
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-        </div>
+        <TextareaComponent
+          value={description}
+          setValue={setDescription}
+          label="Description"
+        />
 
         <div>
           <p>Labels</p>
