@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import './App.css'
-import { JIRAURL, parseQueryParam } from './lib/util'
+import { Jira, parseQueryParam } from './lib/util'
 import {
   priorityMedium,
   allPriorities,
@@ -24,7 +24,7 @@ function App() {
   const [labels, setLabels] = useState([] as string[])
 
   function applyParams() {
-    const jira: JIRAURL = parseQueryParam(jiraURL)
+    const jira: Jira = parseQueryParam(jiraURL)
     setJIRABaseURL(jira.baseURL)
     setProjectID(jira.projectID)
     setIssueType(jira.issueType)
@@ -33,7 +33,7 @@ function App() {
     setLabels(jira.labels)
   }
 
-  const jira = new JIRAURL(
+  const jira = new Jira(
     jiraBaseURL as string,
     projectID as number,
     issueType as number,

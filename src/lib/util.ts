@@ -1,6 +1,6 @@
 import { priorityMedium } from '../types/Priority'
 
-export class JIRAURL {
+export class Jira {
   constructor(
     public baseURL: string,
     public projectID: number,
@@ -32,7 +32,7 @@ export class JIRAURL {
   }
 }
 
-export function parseQueryParam(url: string): JIRAURL {
+export function parseQueryParam(url: string): Jira {
   const urlObject = new URL(url)
   const urlSearchParams = new URLSearchParams(urlObject.search)
 
@@ -45,7 +45,7 @@ export function parseQueryParam(url: string): JIRAURL {
   )
   const labels = urlSearchParams.getAll('labels')
 
-  const jiraURL = new JIRAURL(
+  const jiraURL = new Jira(
     urlObject.origin,
     projectID,
     issueType,
