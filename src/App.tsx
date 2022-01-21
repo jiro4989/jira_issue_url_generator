@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
+
 import './App.css'
+import { JIRAURL, parseQueryParam } from './lib/util'
 import {
-  JIRAURL,
-  parseQueryParam,
   priorityMedium,
-  Priority,
-  priorityString,
   allPriorities,
-} from './lib/util'
+  priority2Name,
+  Priority,
+} from './types/Priority'
+import SelectComponent from './components/SelectComponent'
+import InputComponent, { InputValue } from './components/InputComponent'
+import TextareaComponent from './components/TextareaComponent'
+import InputListComponent from './components/InputListComponent'
 
 function App() {
   const [jiraURL, setJIRAURL] = useState('')
-  const [jiraBaseURL, setJIRABaseURL] = useState('')
-  const [projectID, setProjectID] = useState(1)
-  const [issueType, setIssueType] = useState(1)
-  const [summary, setSummary] = useState('')
+  const [jiraBaseURL, setJIRABaseURL] = useState('' as InputValue)
+  const [projectID, setProjectID] = useState(1 as InputValue)
+  const [issueType, setIssueType] = useState(1 as InputValue)
+  const [summary, setSummary] = useState('' as InputValue)
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState(priorityMedium)
   const [labels, setLabels] = useState([] as string[])
@@ -27,20 +31,6 @@ function App() {
     setSummary(jira.summary)
     setDescription(jira.description)
     setLabels(jira.labels)
-  }
-
-  function addLabelElement() {
-    setLabels([...labels, ''])
-  }
-
-  function deleteLabelElement(index: number) {
-    labels.splice(index, 1)
-    setLabels([...labels])
-  }
-
-  function changeLabel(index: number, value: string) {
-    labels[index] = value
-    setLabels([...labels])
   }
 
   const qp = [
@@ -58,41 +48,12 @@ function App() {
     `${jiraBaseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`
   )
 
-  const labelsElement = labels.map((e, i) => (
-    <li key={i}>
-      <input
-        className="LabelInput"
-        type="text"
-        value={e}
-        onChange={(v) => changeLabel(i, v.target.value)}
-      />
-      <button className="LabelButton" onClick={(e) => deleteLabelElement(i)}>
-        Delete
-      </button>
-    </li>
-  ))
-
-  function requiredValue(value: string): string {
-    return value.trim() !== '' ? 'StateOK' : 'StateNG'
-  }
-
   const generatedURLElement =
     summary === '' || jiraBaseURL === '' ? (
       <p>Please fix error input</p>
     ) : (
       <a href={generatedURL}>{summary}</a>
     )
-
-  const prioritySelectionElement = (
-    <select
-      value={priority}
-      onChange={(e) => setPriority(parseInt(e.target.value) as Priority)}
-    >
-      {allPriorities.map((e) => (
-        <option value={e}>{priorityString(e)}</option>
-      ))}
-    </select>
-  )
 
   return (
     <div className="App">
@@ -114,69 +75,61 @@ function App() {
 
         <hr />
 
-        <div>
-          <label>Jira Base URL</label>
-          <input
-            className={requiredValue(jiraBaseURL)}
-            type="text"
-            onChange={(e) => setJIRABaseURL(e.target.value)}
-            value={jiraBaseURL}
-            placeholder="https://example.com"
-          />
-        </div>
+        <InputComponent
+          value={jiraBaseURL}
+          setValue={setJIRABaseURL}
+          type="text"
+          label="Jira Base URL"
+          isRequired={true}
+          placeholder="https://example.com"
+        />
 
-        <div>
-          <label>Project ID</label>
-          <input
-            className={requiredValue('' + projectID)}
-            type="number"
-            onChange={(e) => setProjectID(parseInt(e.target.value))}
-            value={projectID}
-          />
-        </div>
+        <InputComponent
+          value={projectID}
+          setValue={setProjectID}
+          type="number"
+          label="Project ID"
+          isRequired={true}
+          placeholder="1"
+        />
 
-        <div>
-          <label>IssueType</label>
-          <input
-            className={requiredValue('' + issueType)}
-            type="number"
-            onChange={(e) => setIssueType(parseInt(e.target.value))}
-            value={issueType}
-          />
-        </div>
+        <InputComponent
+          value={issueType}
+          setValue={setIssueType}
+          type="number"
+          label="Issue Type"
+          isRequired={true}
+          placeholder="1"
+        />
 
-        <div>
-          <label>Priority</label>
-          {prioritySelectionElement}
-        </div>
+        <SelectComponent<Priority>
+          value={priority}
+          setValue={setPriority}
+          optionValues={allPriorities}
+          converter={priority2Name}
+          label="Priority"
+        />
 
-        <div>
-          <label>Summary</label>
-          <input
-            className={requiredValue(summary)}
-            type="text"
-            onChange={(e) => setSummary(e.target.value)}
-            value={summary}
-          />
-        </div>
+        <InputComponent
+          value={summary}
+          setValue={setSummary}
+          type="text"
+          label="Summary"
+          isRequired={true}
+          placeholder=""
+        />
 
-        <div>
-          <label>Description</label>
-          <textarea
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-        </div>
+        <TextareaComponent
+          value={description}
+          setValue={setDescription}
+          label="Description"
+        />
 
-        <div>
-          <p>Labels</p>
-          <p>
-            <button className="AddButton" onClick={(e) => addLabelElement()}>
-              Add
-            </button>
-          </p>
-          <ul>{labelsElement}</ul>
-        </div>
+        <InputListComponent
+          values={labels}
+          setValues={setLabels}
+          label="Labels"
+        />
       </section>
 
       <section>
