@@ -11,6 +11,7 @@ import {
 import SelectComponent from './components/SelectComponent'
 import InputComponent, { InputValue } from './components/InputComponent'
 import TextareaComponent from './components/TextareaComponent'
+import InputListComponent from './components/InputListComponent'
 
 function App() {
   const [jiraURL, setJIRAURL] = useState('')
@@ -32,20 +33,6 @@ function App() {
     setLabels(jira.labels)
   }
 
-  function addLabelElement() {
-    setLabels([...labels, ''])
-  }
-
-  function deleteLabelElement(index: number) {
-    labels.splice(index, 1)
-    setLabels([...labels])
-  }
-
-  function changeLabel(index: number, value: string) {
-    labels[index] = value
-    setLabels([...labels])
-  }
-
   const qp = [
     `pid=${projectID}`,
     `issuetype=${issueType}`,
@@ -60,20 +47,6 @@ function App() {
   const generatedURL = encodeURI(
     `${jiraBaseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`
   )
-
-  const labelsElement = labels.map((e, i) => (
-    <li key={i}>
-      <input
-        className="LabelInput"
-        type="text"
-        value={e}
-        onChange={(v) => changeLabel(i, v.target.value)}
-      />
-      <button className="LabelButton" onClick={(e) => deleteLabelElement(i)}>
-        Delete
-      </button>
-    </li>
-  ))
 
   const generatedURLElement =
     summary === '' || jiraBaseURL === '' ? (
@@ -152,15 +125,11 @@ function App() {
           label="Description"
         />
 
-        <div>
-          <p>Labels</p>
-          <p>
-            <button className="AddButton" onClick={(e) => addLabelElement()}>
-              Add
-            </button>
-          </p>
-          <ul>{labelsElement}</ul>
-        </div>
+        <InputListComponent
+          values={labels}
+          setValues={setLabels}
+          label="Labels"
+        />
       </section>
 
       <section>
