@@ -73,10 +73,6 @@ function App() {
     </li>
   ))
 
-  function requiredValue(value: string): string {
-    return value.trim() !== '' ? 'StateOK' : 'StateNG'
-  }
-
   const generatedURLElement =
     summary === '' || jiraBaseURL === '' ? (
       <p>Please fix error input</p>
