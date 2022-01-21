@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/jira_issue_url_generator/static/css/main.9f913961.css",
-    "main.js": "/jira_issue_url_generator/static/js/main.0cd95335.js",
+    "main.js": "/jira_issue_url_generator/static/js/main.f48fb75f.js",
     "static/js/787.53bf1c0a.chunk.js": "/jira_issue_url_generator/static/js/787.53bf1c0a.chunk.js",
     "index.html": "/jira_issue_url_generator/index.html",
     "main.9f913961.css.map": "/jira_issue_url_generator/static/css/main.9f913961.css.map",
-    "main.0cd95335.js.map": "/jira_issue_url_generator/static/js/main.0cd95335.js.map",
+    "main.f48fb75f.js.map": "/jira_issue_url_generator/static/js/main.f48fb75f.js.map",
     "787.53bf1c0a.chunk.js.map": "/jira_issue_url_generator/static/js/787.53bf1c0a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9f913961.css",
-    "static/js/main.0cd95335.js"
+    "static/js/main.f48fb75f.js"
   ]
 }
