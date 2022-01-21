@@ -15,7 +15,7 @@ function App() {
   const [jiraBaseURL, setJIRABaseURL] = useState('' as InputValue)
   const [projectID, setProjectID] = useState(1 as InputValue)
   const [issueType, setIssueType] = useState(1 as InputValue)
-  const [summary, setSummary] = useState('')
+  const [summary, setSummary] = useState('' as InputValue)
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState(priorityMedium)
   const [labels, setLabels] = useState([] as string[])
@@ -145,15 +145,14 @@ function App() {
           {prioritySelectionElement}
         </div>
 
-        <div>
-          <label>Summary</label>
-          <input
-            className={requiredValue(summary)}
-            type="text"
-            onChange={(e) => setSummary(e.target.value)}
-            value={summary}
-          />
-        </div>
+        <InputComponent
+          value={summary}
+          setValue={setSummary}
+          type="text"
+          label="Summary"
+          isRequired={true}
+          placeholder=""
+        />
 
         <div>
           <label>Description</label>
