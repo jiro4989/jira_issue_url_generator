@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import './App.css'
-import { Jira, parseQueryParam } from './lib/util'
+import { Jira, parseQueryParam } from './types/Jira'
 import {
   priorityMedium,
   allPriorities,

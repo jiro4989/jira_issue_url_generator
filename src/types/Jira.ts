@@ -1,4 +1,4 @@
-import { priorityMedium } from '../types/Priority'
+import { priorityMedium } from './Priority'
 
 export class Jira {
   constructor(
