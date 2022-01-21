@@ -42,7 +42,7 @@ export default function InputComponent({
     <div>
       <label>{label}</label>
       <input
-        className={requiredValue(value, !isRequired)}
+        className={requiredValue(value, isRequired)}
         type={type}
         onChange={(e) => wrapSetValue(e.target.value)}
         value={value}
