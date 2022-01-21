@@ -22,12 +22,12 @@ export default function InputComponent({
   isRequired,
   placeholder,
 }: {
-  value: InputValue,
-  setValue: React.Dispatch<React.SetStateAction<InputValue>>,
-  type: string,
-  label: string,
-  isRequired: boolean,
-  placeholder: string,
+  value: InputValue
+  setValue: React.Dispatch<React.SetStateAction<InputValue>>
+  type: string
+  label: string
+  isRequired: boolean
+  placeholder: string
 }) {
   function wrapSetValue(value: string) {
     switch (typeof value) {
