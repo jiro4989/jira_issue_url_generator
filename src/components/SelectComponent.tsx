@@ -20,8 +20,10 @@ export default function SelectComponent<T extends number>({
         value={value}
         onChange={(e) => setValue(parseInt(e.target.value) as T)}
       >
-        {optionValues.map((e,i) => (
-          <option key={i} value={e}>{converter(e)}</option>
+        {optionValues.map((e, i) => (
+          <option key={i} value={e}>
+            {converter(e)}
+          </option>
         ))}
       </select>
     </div>

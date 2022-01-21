@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 
 import './App.css'
+import { JIRAURL, parseQueryParam } from './lib/util'
 import {
-  JIRAURL,
-  parseQueryParam,
-} from './lib/util'
-import { priorityMedium, allPriorities, priority2Name, Priority } from './types/Priority'
+  priorityMedium,
+  allPriorities,
+  priority2Name,
+  Priority,
+} from './types/Priority'
 import SelectComponent from './components/SelectComponent'
 import InputComponent, { InputValue } from './components/InputComponent'
 
@@ -131,7 +133,7 @@ function App() {
           setValue={setPriority}
           optionValues={allPriorities}
           converter={priority2Name}
-          label='Priority'
+          label="Priority"
         />
 
         <InputComponent

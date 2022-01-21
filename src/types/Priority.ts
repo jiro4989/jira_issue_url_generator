@@ -15,15 +15,15 @@ export const allPriorities: Priority[] = [
 export function priority2Name(value: Priority): string {
   switch (value) {
     case priorityHighest:
-      return "Highest"
+      return 'Highest'
     case priorityHigh:
-      return "High"
+      return 'High'
     case priorityMedium:
-      return "Medium"
+      return 'Medium'
     case priorityLow:
-      return "Low"
+      return 'Low'
     case priorityLowest:
-      return "Lowest"
+      return 'Lowest'
   }
-  return "Unknown"
+  return 'Unknown'
 }
