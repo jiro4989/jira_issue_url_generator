@@ -1,4 +1,11 @@
-import { priority2Name, priorityHigh, priorityHighest, priorityLow, priorityLowest, priorityMedium } from './Priority'
+import {
+  priority2Name,
+  priorityHigh,
+  priorityHighest,
+  priorityLow,
+  priorityLowest,
+  priorityMedium,
+} from './Priority'
 
 describe('priority2Name', () => {
   const testCases = [
