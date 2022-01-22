@@ -15,8 +15,10 @@ export default function SelectComponent<T extends number>({
 }) {
   return (
     <div>
-      <label>{label}</label>
+      <label htmlFor={label}>{label}</label>
       <select
+        id={label}
+        name={label}
         value={value}
         onChange={(e) => setValue(parseInt(e.target.value) as T)}
       >
