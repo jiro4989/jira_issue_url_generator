@@ -50,8 +50,10 @@ function App() {
       </div>
     ) : (
       <div>
-        <label htmlFor='generated_url' >Generated URL</label>
-        <a id='generated_url' role='output' href={generatedURL}>{summary}</a>
+        <label htmlFor="generated_url">Generated URL</label>
+        <a id="generated_url" role="output" href={generatedURL}>
+          {summary}
+        </a>
       </div>
     )
 

@@ -56,26 +56,29 @@ describe('UIの変更結果に対するテスト', () => {
     const summary = 'sushi'
 
     fireEvent.change(screen.getByLabelText(/Jira Base URL/i), {
-      target: {value: 'https://example.com'}
+      target: { value: 'https://example.com' },
     })
     fireEvent.change(screen.getByLabelText(/Project ID/i), {
-      target: {value: 1}
+      target: { value: 1 },
     })
     fireEvent.change(screen.getByLabelText(/Issue Type/i), {
-      target: {value: 2}
+      target: { value: 2 },
     })
     fireEvent.change(screen.getByLabelText(/Priority/i), {
-      target: {value: 3}
+      target: { value: 3 },
     })
     fireEvent.change(screen.getByLabelText(/Summary/i), {
-      target: {value: summary}
+      target: { value: summary },
     })
     fireEvent.change(screen.getByLabelText(/Description/i), {
-      target: {value: 'coffee'}
+      target: { value: 'coffee' },
     })
 
     const got = await screen.findByRole('output')
     expect(got).toHaveTextContent(summary)
-    expect(got).toHaveAttribute('href', `${baseURL}?pid=1&issuetype=2&priority=3&summary=sushi&description=coffee`)
+    expect(got).toHaveAttribute(
+      'href',
+      `${baseURL}?pid=1&issuetype=2&priority=3&summary=sushi&description=coffee`
+    )
   })
 })
