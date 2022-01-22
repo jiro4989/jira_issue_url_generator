@@ -30,6 +30,15 @@ export class Jira {
 
     return url
   }
+
+  validateURL(): boolean {
+    if (this.baseURL === '') return false
+    if (this.projectID < 1) return false
+    if (this.issueType < 1) return false
+    if (this.summary === '') return false
+    if (this.priority < 1 || 5 < this.priority) return false
+    return true
+  }
 }
 
 export function parseQueryParam(url: string): Jira {
