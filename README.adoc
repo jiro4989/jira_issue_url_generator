@@ -8,6 +8,8 @@ image:https://codecov.io/gh/jiro4989/jira_issue_url_generator/branch/main/graph/
 https://www.atlassian.com/software/jira[JIRA]の issues を作成するURLをUIで作れるようにします。
 静的なアプリなのでGitHub Pagesでホスティングします。
 
+* https://jiro4989.github.io/jira_issue_url_generator/
+
 image:./docs/toppage.png[toppage]
 
 == issues を作成するURLとは
