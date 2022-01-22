@@ -35,7 +35,7 @@ describe('デフォルト状態に対するテスト', () => {
   ]
 
   for (const testCase of testCases) {
-    const {description, regex} = testCase
+    const { description, regex } = testCase
     test(description, () => {
       render(<App />)
       const got = screen.getByText(regex)
@@ -82,7 +82,8 @@ describe('UIの変更結果に対するテスト', () => {
 
   const errorTestCases = [
     {
-      description: '正常系: 必須の項目(Jira Base URL)が足りなければOutputは得られない',
+      description:
+        '正常系: 必須の項目(Jira Base URL)が足りなければOutputは得られない',
       inJiraBaseURL: '',
       inProjectID: 1,
       inIssueType: 2,
@@ -91,7 +92,8 @@ describe('UIの変更結果に対するテスト', () => {
       inDescription: 'coffee',
     },
     {
-      description: '正常系: 必須の項目(projectID)が足りなければOutputは得られない',
+      description:
+        '正常系: 必須の項目(projectID)が足りなければOutputは得られない',
       inJiraBaseURL: 'https://example.com',
       inProjectID: 0,
       inIssueType: 2,
@@ -100,7 +102,8 @@ describe('UIの変更結果に対するテスト', () => {
       inDescription: 'coffee',
     },
     {
-      description: '正常系: 必須の項目(issue type)が足りなければOutputは得られない',
+      description:
+        '正常系: 必須の項目(issue type)が足りなければOutputは得られない',
       inJiraBaseURL: 'https://example.com',
       inProjectID: 1,
       inIssueType: 0,
@@ -109,7 +112,8 @@ describe('UIの変更結果に対するテスト', () => {
       inDescription: 'coffee',
     },
     {
-      description: '正常系: 必須の項目(summary)が足りなければOutputは得られない',
+      description:
+        '正常系: 必須の項目(summary)が足りなければOutputは得られない',
       inJiraBaseURL: 'https://example.com',
       inProjectID: 1,
       inIssueType: 2,
@@ -120,13 +124,21 @@ describe('UIの変更結果に対するテスト', () => {
   ]
 
   for (const testCase of errorTestCases) {
-    const { description, inJiraBaseURL, inProjectID, inIssueType, inPriority, inSummary, inDescription } = testCase
+    const {
+      description,
+      inJiraBaseURL,
+      inProjectID,
+      inIssueType,
+      inPriority,
+      inSummary,
+      inDescription,
+    } = testCase
 
     test(description, async () => {
       render(<App />)
 
       fireEvent.change(screen.getByLabelText(/Jira Base URL/i), {
-        target: { value: inJiraBaseURL},
+        target: { value: inJiraBaseURL },
       })
       fireEvent.change(screen.getByLabelText(/Project ID/i), {
         target: { value: inProjectID },
@@ -141,7 +153,7 @@ describe('UIの変更結果に対するテスト', () => {
         target: { value: inSummary },
       })
       fireEvent.change(screen.getByLabelText(/Description/i), {
-        target: { value: inDescription},
+        target: { value: inDescription },
       })
 
       const got = await screen.getByText(/Please fix error input/i)

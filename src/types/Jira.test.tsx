@@ -7,14 +7,12 @@ describe('generateURL', () => {
   const testCases = [
     {
       description: '正常系: すべてのフィールドがクエリパラメータになる',
-      inJira: new Jira(origin, 1, 2, 'summary', 'desc', 4, [
-        'hello',
-        'world',
-      ]),
+      inJira: new Jira(origin, 1, 2, 'summary', 'desc', 4, ['hello', 'world']),
       want: `${baseURL}?pid=1&issuetype=2&priority=4&summary=summary&description=desc&labels=hello&labels=world`,
     },
     {
-      description: '正常系: ラベルが1つだけ設定されてる場合はクエリパラメータも1つだけになる',
+      description:
+        '正常系: ラベルが1つだけ設定されてる場合はクエリパラメータも1つだけになる',
       inJira: new Jira(origin, 1, 2, 'summary', 'desc', 4, ['hello']),
       want: `${baseURL}?pid=1&issuetype=2&priority=4&summary=summary&description=desc&labels=hello`,
     },
@@ -36,7 +34,7 @@ describe('generateURL', () => {
   ]
 
   for (const testCase of testCases) {
-    const {description, inJira, want} = testCase
+    const { description, inJira, want } = testCase
 
     test(description, () => {
       const got = inJira.generateURL()
@@ -49,56 +47,38 @@ describe('validateURL', () => {
   const testCases = [
     {
       description: '正常系: 必須の項目を満たしていればtrue',
-      inJira: new Jira(origin, 1, 2, 'summary', 'desc', 3, [
-        'hello',
-        'world',
-      ]),
+      inJira: new Jira(origin, 1, 2, 'summary', 'desc', 3, ['hello', 'world']),
       want: true,
     },
     {
       description: '正常系: JiraBaseURLがなければfalse',
-      inJira: new Jira('', 1, 2, 'summary', 'desc', 3, [
-        'hello',
-        'world',
-      ]),
+      inJira: new Jira('', 1, 2, 'summary', 'desc', 3, ['hello', 'world']),
       want: false,
     },
     {
       description: '正常系: ProjectIDがなければfalse',
-      inJira: new Jira(origin, 0, 2, 'summary', 'desc', 3, [
-        'hello',
-        'world',
-      ]),
+      inJira: new Jira(origin, 0, 2, 'summary', 'desc', 3, ['hello', 'world']),
       want: false,
     },
     {
       description: '正常系: IssueTypeがなければfalse',
-      inJira: new Jira(origin, 1, 0, 'summary', 'desc', 3, [
-        'hello',
-        'world',
-      ]),
+      inJira: new Jira(origin, 1, 0, 'summary', 'desc', 3, ['hello', 'world']),
       want: false,
     },
     {
       description: '正常系: Summaryがなければfalse',
-      inJira: new Jira(origin, 1, 2, '', 'desc', 3, [
-        'hello',
-        'world',
-      ]),
+      inJira: new Jira(origin, 1, 2, '', 'desc', 3, ['hello', 'world']),
       want: false,
     },
     {
       description: '正常系: Priorityがなければfalse',
-      inJira: new Jira(origin, 1, 2, 'summary', 'desc', 0, [
-        'hello',
-        'world',
-      ]),
+      inJira: new Jira(origin, 1, 2, 'summary', 'desc', 0, ['hello', 'world']),
       want: false,
     },
   ]
 
   for (const testCase of testCases) {
-    const {description, inJira, want} = testCase
+    const { description, inJira, want } = testCase
 
     test(description, () => {
       const got = inJira.validateURL()
@@ -112,10 +92,7 @@ describe('parseQueryParam', () => {
     {
       description: '正常系: すべてのクエリパラメータを解釈できる',
       inURL: `${baseURL}?pid=1&issuetype=2&priority=4&summary=summary&description=desc&labels=hello&labels=world`,
-      want: new Jira(origin, 1, 2, 'summary', 'desc', 4, [
-        'hello',
-        'world',
-      ]),
+      want: new Jira(origin, 1, 2, 'summary', 'desc', 4, ['hello', 'world']),
     },
     {
       description: '正常系: labelsは省略可能',
@@ -155,7 +132,7 @@ describe('parseQueryParam', () => {
   ]
 
   for (const testCase of testCases) {
-    const {description, inURL, want} = testCase
+    const { description, inURL, want } = testCase
 
     test(description, () => {
       const got = parseQueryParam(inURL)
