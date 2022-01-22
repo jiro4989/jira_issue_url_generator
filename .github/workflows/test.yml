@@ -26,6 +26,8 @@ jobs:
       - name: Check code style
         run: npm run format-check
       - name: Test
-        run: npm test
+        run: npm test-coverage
       - name: Build
         run: npm run build
+      - name: Upload test coverage to Codecov
+        uses: codecov/codecov-action@v2.1.0
