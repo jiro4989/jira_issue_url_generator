@@ -72,7 +72,7 @@ describe('UIの変更結果に対するテスト', () => {
       target: { value: 'coffee' },
     })
 
-    const got = await screen.findByRole('output')
+    const got = await screen.findByTestId('output')
     expect(got).toHaveTextContent(summary)
     expect(got).toHaveAttribute(
       'href',

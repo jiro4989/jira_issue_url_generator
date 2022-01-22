@@ -44,8 +44,8 @@ function App() {
   )
   const generatedURLElement = jira.validateURL() ? (
     <div>
-      <label htmlFor="generated_url">Generated URL</label>
-      <a id="generated_url" role="output" href={jira.generateURL()}>
+      <label>Generated URL</label>
+      <a data-testid="output" href={jira.generateURL()}>
         {summary}
       </a>
     </div>
