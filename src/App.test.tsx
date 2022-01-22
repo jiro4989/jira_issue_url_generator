@@ -50,7 +50,7 @@ describe('UIの変更結果に対するテスト', () => {
   const origin = 'https://example.com'
   const baseURL = `${origin}/secure/CreateIssueDetails!init.jspa`
 
-  test('Jira Base URLが含まれる', async () => {
+  test('必須の項目を埋めればOutputのURLが得られる', async () => {
     render(<App />)
 
     const summary = 'sushi'
