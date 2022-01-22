@@ -45,9 +45,14 @@ function App() {
   const generatedURL = jira.generateURL()
   const generatedURLElement =
     summary === '' || jiraBaseURL === '' ? (
-      <p>Please fix error input</p>
+      <div>
+        <p>Please fix error input</p>
+      </div>
     ) : (
-      <a href={generatedURL}>{summary}</a>
+      <div>
+        <label htmlFor='generated_url' >Generated URL</label>
+        <a id='generated_url' role='output' href={generatedURL}>{summary}</a>
+      </div>
     )
 
   return (
@@ -129,10 +134,7 @@ function App() {
 
       <section>
         <h2>OUTPUT</h2>
-        <div>
-          <label>Generated URL</label>
-          {generatedURLElement}
-        </div>
+        {generatedURLElement}
       </section>
     </div>
   )

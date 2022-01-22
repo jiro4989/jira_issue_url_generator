@@ -11,8 +11,8 @@ export default function TextareaComponent({
 }) {
   return (
     <div>
-      <label>{label}</label>
-      <textarea onChange={(e) => setValue(e.target.value)} value={value} />
+      <label htmlFor={label} >{label}</label>
+      <textarea id={label} name={label} onChange={(e) => setValue(e.target.value)} value={value} />
     </div>
   )
 }

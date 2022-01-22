@@ -40,8 +40,10 @@ export default function InputComponent({
 
   return (
     <div>
-      <label>{label}</label>
+      <label htmlFor={label}>{label}</label>
       <input
+        id={label}
+        name={label}
         className={requiredValue(value, isRequired)}
         type={type}
         onChange={(e) => wrapSetValue(e.target.value)}
