@@ -2,7 +2,7 @@
 :toc: left
 :sectnums:
 
-image:https://github.com/jiro4989/jira_issue_url_generator/workflows/build/badge.svg[test, link=https://github.com/jiro4989/jira_issue_url_generator/actions]
+image:https://github.com/jiro4989/jira_issue_url_generator/workflows/test/badge.svg[test, link=https://github.com/jiro4989/jira_issue_url_generator/actions]
 image:https://codecov.io/gh/jiro4989/jira_issue_url_generator/branch/main/graph/badge.svg[codecov, link=https://codecov.io/gh/jiro4989/jira_issue_url_generator]
 
 https://www.atlassian.com/software/jira[JIRA]の issues を作成するURLをUIで作れるようにします。
