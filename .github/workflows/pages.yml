@@ -11,10 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Cache
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-${{ hashFiles('Dockerfile') }}-${{ hashFiles('package-lock.json') }}
       - name: Build docker image
-        run: docker build -t ci .
+        run: npm run build-docker
+      - name: Install dependencies
+        run: npm run docker-run -- ci
+        if: steps.cache.outputs.cache-hit != 'true'
       - name: Build
-        run: docker run -v "$PWD/build:/app/build" -t ci npm run build
+        run: npm run docker-run -- run build
       - name: Deploy pages
         uses: peaceiris/actions-gh-pages@v3
         with:
