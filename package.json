@@ -22,7 +22,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test-coverage": "react-scripts test --coverage --watchAll=false",
-    "test-docker": "docker build .",
     "eject": "react-scripts eject",
     "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "format-check": "prettier --check 'src/**/*.ts' 'src/**/*.tsx'"

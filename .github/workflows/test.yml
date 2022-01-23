@@ -18,16 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '17'
-      - name: Setup dependencies
-        run: npm ci
+      - name: Build docker image
+        run: docker build -t ci .
       - name: Check code style
-        run: npm run format-check
+        run: docker run -t ci npm run format-check
       - name: Test
-        run: npm run test-coverage
+        run: >-
+          docker run
+          -v "$PWD/coverage:/app/coverage"
+          -t ci
+          npm run test-coverage
       - name: Build
-        run: npm run build
+        run: docker run -t ci npm run build
       - name: Upload test coverage to Codecov
         uses: codecov/codecov-action@v2.1.0
