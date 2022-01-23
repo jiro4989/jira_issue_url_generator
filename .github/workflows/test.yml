@@ -18,17 +18,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Cache
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-${{ hashFiles('Dockerfile') }}-${{ hashFiles('package-lock.json') }}
       - name: Build docker image
-        run: docker build -t ci .
+        run: npm run build-docker
+      - name: Install dependencies
+        run: npm run docker-run -- ci
+        if: steps.cache.outputs.cache-hit != 'true'
       - name: Check code style
-        run: docker run -t ci npm run format-check
+        run: npm run docker-run -- run format-check
       - name: Test
-        run: >-
-          docker run
-          -v "$PWD/coverage:/app/coverage"
-          -t ci
-          npm run test-coverage
+        run: npm run docker-run -- run test-coverage
       - name: Build
-        run: docker run -t ci npm run build
+        run: npm run docker-run -- run build
       - name: Upload test coverage to Codecov
         uses: codecov/codecov-action@v2.1.0
