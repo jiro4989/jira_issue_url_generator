@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/jira_issue_url_generator/static/css/main.9f913961.css",
-    "main.js": "/jira_issue_url_generator/static/js/main.ac03cd38.js",
+    "main.css": "/jira_issue_url_generator/static/css/main.09f3ca25.css",
+    "main.js": "/jira_issue_url_generator/static/js/main.4635b33c.js",
     "static/js/787.9d0109a4.chunk.js": "/jira_issue_url_generator/static/js/787.9d0109a4.chunk.js",
     "index.html": "/jira_issue_url_generator/index.html",
-    "main.9f913961.css.map": "/jira_issue_url_generator/static/css/main.9f913961.css.map",
-    "main.ac03cd38.js.map": "/jira_issue_url_generator/static/js/main.ac03cd38.js.map",
+    "main.09f3ca25.css.map": "/jira_issue_url_generator/static/css/main.09f3ca25.css.map",
+    "main.4635b33c.js.map": "/jira_issue_url_generator/static/js/main.4635b33c.js.map",
     "787.9d0109a4.chunk.js.map": "/jira_issue_url_generator/static/js/787.9d0109a4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f913961.css",
-    "static/js/main.ac03cd38.js"
+    "static/css/main.09f3ca25.css",
+    "static/js/main.4635b33c.js"
   ]
 }
