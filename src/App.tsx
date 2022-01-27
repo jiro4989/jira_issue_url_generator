@@ -44,10 +44,14 @@ function App() {
   )
   const generatedURLElement = jira.validateURL() ? (
     <div>
-      <label>Generated URL</label>
-      <a data-testid="output" href={jira.generateURL()}>
-        {summary}
-      </a>
+      <label>
+        Generated URL
+        <div>
+          <a data-testid="output" href={jira.generateURL()}>
+            {summary}
+          </a>
+        </div>
+      </label>
     </div>
   ) : (
     <div>
@@ -61,14 +65,17 @@ function App() {
       <section>
         <h2>INPUT</h2>
         <div>
-          <label>Set parameters from JIRA URL</label>
-          <input
-            type="text"
-            onChange={(e) => setJIRAURL(e.target.value)}
-            autoFocus
-            placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
-          />
-          <button className="ApplyButton" onClick={(e) => applyParams()}>
+          <label className="ComponentLabel">
+            Set parameters from JIRA URL
+            <input
+              className="Input FullWidth"
+              type="text"
+              onChange={(e) => setJIRAURL(e.target.value)}
+              autoFocus
+              placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
+            />
+          </label>
+          <button className="VeryShortWidth" onClick={(e) => applyParams()}>
             Apply
           </button>
         </div>

@@ -39,17 +39,19 @@ export default function InputComponent({
   }
 
   return (
-    <div>
-      <label htmlFor={label}>{label}</label>
-      <input
-        id={label}
-        name={label}
-        className={requiredValue(value, isRequired)}
-        type={type}
-        onChange={(e) => wrapSetValue(e.target.value)}
-        value={value}
-        placeholder={placeholder}
-      />
+    <div className="InputComponent">
+      <label className="ComponentLabel" htmlFor={label}>
+        {label}
+        <input
+          id={label}
+          name={label}
+          className={requiredValue(value, isRequired) + ' Input FullWidth'}
+          type={type}
+          onChange={(e) => wrapSetValue(e.target.value)}
+          value={value}
+          placeholder={placeholder}
+        />
+      </label>
     </div>
   )
 }

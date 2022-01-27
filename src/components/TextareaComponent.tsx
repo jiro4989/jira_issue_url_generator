@@ -14,6 +14,7 @@ export default function TextareaComponent({
       <label htmlFor={label}>{label}</label>
       <textarea
         id={label}
+        className="Input FullWidth"
         name={label}
         onChange={(e) => setValue(e.target.value)}
         value={value}

@@ -26,12 +26,12 @@ export default function InputListComponent({
   const labelsElement = values.map((e, i) => (
     <li key={i}>
       <input
-        className="LabelInput"
+        className="Input ShortWidth"
         type="text"
         value={e}
         onChange={(v) => changeValue(i, v.target.value)}
       />
-      <button className="LabelButton" onClick={(e) => deleteValue(i)}>
+      <button className="VeryShortWidth" onClick={(e) => deleteValue(i)}>
         Delete
       </button>
     </li>
@@ -41,7 +41,7 @@ export default function InputListComponent({
     <div>
       <p>{label}</p>
       <p>
-        <button className="AddButton" onClick={(e) => addValue()}>
+        <button className="VeryShortWidth" onClick={(e) => addValue()}>
           Add
         </button>
       </p>
