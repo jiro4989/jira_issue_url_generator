@@ -44,11 +44,12 @@ function App() {
   )
   const generatedURLElement = jira.validateURL() ? (
     <div>
-      <label>Generated URL
+      <label>
+        Generated URL
         <div>
-      <a data-testid="output" href={jira.generateURL()}>
-        {summary}
-      </a>
+          <a data-testid="output" href={jira.generateURL()}>
+            {summary}
+          </a>
         </div>
       </label>
     </div>
