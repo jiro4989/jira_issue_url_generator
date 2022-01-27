@@ -6,6 +6,10 @@
   font-family: sans-serif;
 }
 
+h1, h2 {
+  font-family: fantasy, sans-serif;
+}
+
 textarea {
   height: 20vh;
 }
@@ -14,13 +18,17 @@ textarea {
   background-color: lightcoral;
 }
 
-
 .InputComponent, .SelectComponent {
 	position: relative;
 	width: 100%;
 	margin-bottom: 1%;
 }
 
+/*
+================================================================================
+  Input
+================================================================================
+*/
 .Input {
 	font: 15px/24px sans-serif;
 	box-sizing: border-box;
@@ -39,6 +47,11 @@ textarea {
 	outline: none;
 }
 
+/*
+================================================================================
+  Width
+================================================================================
+*/
 .FullWidth {
   width: 100%;
 }
@@ -51,6 +64,11 @@ textarea {
   width: 20%;
 }
 
+/*
+================================================================================
+  Button
+================================================================================
+*/
 button {
 	font: 15px/24px sans-serif;
 	padding: 0.3em;
@@ -70,8 +88,4 @@ button:hover, button:focus {
 
 button:active {
   transform: translate(0, 1px);
-}
-
-h1, h2 {
-  font-family: fantasy, sans-serif;
 }
