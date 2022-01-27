@@ -3,31 +3,11 @@
   margin-left: auto;
   margin-right: auto;
   font-size: 18px;
-}
-
-input, textarea, button, select {
-  font-size: 18px;
-}
-
-input {
-  width: 100%;
+  font-family: sans-serif;
 }
 
 textarea {
-  width: 100%;
   height: 20vh;
-}
-
-.ApplyButton {
-  width: 20%;
-}
-
-.LabelInput {
-  width: 50%;
-}
-
-.LabelButton, .AddButton {
-  width: 20%;
 }
 
 .StateNG {
@@ -41,11 +21,11 @@ textarea {
 	margin-bottom: 1%;
 }
 
-input[type='text'], input[type='number'], select, textarea {
+.Input {
 	font: 15px/24px sans-serif;
 	box-sizing: border-box;
-	width: 100%;
 	padding: 0.3em;
+  margin-right: 1%;
 	transition: 0.3s;
 	letter-spacing: 1px;
 	color: #111111;
@@ -54,9 +34,21 @@ input[type='text'], input[type='number'], select, textarea {
 	background: transparent;
 }
 
-.ComponentLabel input[type='text']:focus, .ComponentLabel input[type='number']:focus, select:focus, textarea:focus {
+.Input:focus {
 	border-bottom: 2px solid #da3c41;
 	outline: none;
+}
+
+.FullWidth {
+  width: 100%;
+}
+
+.ShortWidth {
+  width: 30%;
+}
+
+.VeryShortWidth {
+  width: 20%;
 }
 
 button {
@@ -71,11 +63,15 @@ button {
   border-radius: 2px;
 }
 
-button:hover {
+button:hover, button:focus {
   background-color: rgb(83, 83, 83);
   cursor: pointer;
 }
 
 button:active {
   transform: translate(0, 1px);
+}
+
+h1, h2 {
+  font-family: fantasy, sans-serif;
 }

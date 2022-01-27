@@ -45,7 +45,7 @@ export default function InputComponent({
         <input
           id={label}
           name={label}
-          className={requiredValue(value, isRequired)}
+          className={requiredValue(value, isRequired) + ' Input FullWidth'}
           type={type}
           onChange={(e) => wrapSetValue(e.target.value)}
           value={value}

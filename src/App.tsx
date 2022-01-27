@@ -61,14 +61,16 @@ function App() {
       <section>
         <h2>INPUT</h2>
         <div>
-          <label>Set parameters from JIRA URL</label>
+          <label className='ComponentLabel'>Set parameters from JIRA URL
           <input
+            className='Input FullWidth'
             type="text"
             onChange={(e) => setJIRAURL(e.target.value)}
             autoFocus
             placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
           />
-          <button className="ApplyButton" onClick={(e) => applyParams()}>
+          </label>
+          <button className="VeryShortWidth" onClick={(e) => applyParams()}>
             Apply
           </button>
         </div>

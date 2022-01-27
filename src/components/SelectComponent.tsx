@@ -19,6 +19,7 @@ export default function SelectComponent<T extends number>({
         {label}
         <select
           id={label}
+          className='Input FullWidth'
           name={label}
           value={value}
           onChange={(e) => setValue(parseInt(e.target.value) as T)}
