@@ -39,8 +39,9 @@ export default function InputComponent({
   }
 
   return (
-    <div className='InputComponent'>
-      <label className='ComponentLabel' htmlFor={label}>{label}
+    <div className="InputComponent">
+      <label className="ComponentLabel" htmlFor={label}>
+        {label}
         <input
           id={label}
           name={label}
