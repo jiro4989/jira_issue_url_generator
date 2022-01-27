@@ -14,8 +14,8 @@ export default function SelectComponent<T extends number>({
   label: string
 }) {
   return (
-    <div>
-      <label htmlFor={label}>{label}</label>
+    <div className='SelectComponent'>
+      <label className='ComponentLabel' htmlFor={label}>{label}
       <select
         id={label}
         name={label}
@@ -28,6 +28,7 @@ export default function SelectComponent<T extends number>({
           </option>
         ))}
       </select>
+      </label>
     </div>
   )
 }

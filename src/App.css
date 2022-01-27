@@ -33,3 +33,26 @@ textarea {
 .StateNG {
   background-color: lightcoral;
 }
+
+
+.InputComponent, .SelectComponent {
+	position: relative;
+	width: 100%;
+	margin-bottom: 1%;
+}
+input[type='text'], input[type='number'], select, textarea {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #111111;
+	border: none;
+	border-bottom: 2px solid #1b2538;
+	background: transparent;
+}
+.ComponentLabel input[type='text']:focus, .ComponentLabel input[type='number']:focus, select:focus, textarea:focus {
+	border-bottom: 2px solid #da3c41;
+	outline: none;
+}
