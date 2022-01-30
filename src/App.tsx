@@ -61,7 +61,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>JIRA ISSUE URL GENERATOR</h1>
+      <header>
+        <h1>JIRA ISSUE URL GENERATOR</h1>
+      </header>
       <section>
         <h2>INPUT</h2>
         <div>
@@ -143,6 +145,10 @@ function App() {
         <h2>OUTPUT</h2>
         {generatedURLElement}
       </section>
+
+      <footer>
+        Copyright (C) 2022 jiro4989
+      </footer>
     </div>
   )
 }

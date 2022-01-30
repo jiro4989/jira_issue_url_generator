@@ -6,6 +6,10 @@
   font-family: sans-serif;
 }
 
+header, footer {
+  text-align: center;
+}
+
 h1, h2 {
   font-family: fantasy, sans-serif;
 }
