@@ -1,7 +1,4 @@
 .App {
-  width: 60vw;
-  margin-left: auto;
-  margin-right: auto;
   font-size: 18px;
   font-family: sans-serif;
 }
@@ -14,12 +11,33 @@ footer {
   height: 30vh;
 }
 
+h1 {
+  margin: 0;
+  padding: 1%;
+}
+
 h1, h2 {
   font-family: fantasy, sans-serif;
 }
 
+section {
+  padding: 1%;
+  margin: 1%;
+  border-radius: 2px;
+}
+
 textarea {
   height: 20vh;
+}
+
+section, header {
+  background-color: #eee;
+}
+
+.CenterArea {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60vw;
 }
 
 .StateNG {
