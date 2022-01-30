@@ -159,7 +159,10 @@ function App() {
         </section>
       </div>
       <footer>
-        Copyright (C) 2022 <a href="https://github.com/jiro4989">jiro4989</a>
+        Copyright (C) 2022 <a href="https://github.com/jiro4989">jiro4989</a> |{' '}
+        <a href="https://github.com/jiro4989/jira_issue_url_generator">
+          Repository
+        </a>
       </footer>
     </div>
   )
