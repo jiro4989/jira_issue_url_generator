@@ -21,7 +21,9 @@ export class Jira {
     if (this.description !== '') {
       qp.push(`description=${encodeURIComponent(this.description)}`)
     }
-    this.labels.map((e) => `labels=${encodeURIComponent(e)}`).forEach((e) => qp.push(e))
+    this.labels
+      .map((e) => `labels=${encodeURIComponent(e)}`)
+      .forEach((e) => qp.push(e))
 
     const queryParams = qp.join('&')
     const url = `${this.baseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`
