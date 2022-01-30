@@ -146,9 +146,7 @@ function App() {
         {generatedURLElement}
       </section>
 
-      <footer>
-        Copyright (C) 2022 jiro4989
-      </footer>
+      <footer>Copyright (C) 2022 jiro4989</footer>
     </div>
   )
 }
