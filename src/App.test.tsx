@@ -172,7 +172,9 @@ describe('URLをバラすフォームのテスト', () => {
     const summary = 'sushi'
 
     fireEvent.change(screen.getByLabelText(/Set parameters from JIRA URL/i), {
-      target: { value: `${baseURL}?pid=9&issuetype=2&priority=3&summary=sushi&description=coffee%26tea` },
+      target: {
+        value: `${baseURL}?pid=9&issuetype=2&priority=3&summary=sushi&description=coffee%26tea`,
+      },
     })
     fireEvent.click(await screen.findByTestId('apply-button'))
 

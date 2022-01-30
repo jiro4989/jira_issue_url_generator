@@ -85,7 +85,11 @@ function App() {
                 placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
               />
             </label>
-            <button data-testid='apply-button' className="VeryShortWidth" onClick={(e) => applyParams()}>
+            <button
+              data-testid="apply-button"
+              className="VeryShortWidth"
+              onClick={(e) => applyParams()}
+            >
               Apply
             </button>
           </div>
