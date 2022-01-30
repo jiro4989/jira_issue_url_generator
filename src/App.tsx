@@ -63,7 +63,13 @@ function App() {
     <div className="App">
       <header>
         <h1>JIRA ISSUE URL GENERATOR</h1>
-        <span>You can generate <a href='https://confluence.atlassian.com/jirakb/how-to-create-issues-using-direct-html-links-in-jira-server-159474.html'>direct HTML links for JIRA</a> in this site.</span>
+        <span>
+          You can generate{' '}
+          <a href="https://confluence.atlassian.com/jirakb/how-to-create-issues-using-direct-html-links-in-jira-server-159474.html">
+            direct HTML links for JIRA
+          </a>{' '}
+          in this site.
+        </span>
       </header>
       <div className="CenterArea">
         <section>
