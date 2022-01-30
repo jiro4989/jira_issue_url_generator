@@ -162,11 +162,11 @@ describe('UIの変更結果に対するテスト', () => {
   }
 })
 
-describe('URLをバラすフォームのテスト', () => {
+describe('URLを分解するフォームのテスト', () => {
   const origin = 'https://example.com'
   const baseURL = `${origin}/secure/CreateIssueDetails!init.jspa`
 
-  test('正常系: URLをバラすフォームを入力してボタンを押すとフォームが補完される', async () => {
+  test('正常系: URLを分解するフォームを入力してボタンを押すと各種inputが補完される', async () => {
     render(<App />)
 
     const summary = 'sushi'
