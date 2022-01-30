@@ -31,6 +31,11 @@ describe('generateURL', () => {
       inJira: new Jira(origin, 1, 2, 'あ', 'い', 4, []),
       want: `${baseURL}?pid=1&issuetype=2&priority=4&summary=%E3%81%82&description=%E3%81%84`,
     },
+    {
+      description: '正常系: &も=もパーセントエンコーディングされる',
+      inJira: new Jira(origin, 1, 2, 'a=1&a=2', 'b=1&b=2', 4, []),
+      want: `${baseURL}?pid=1&issuetype=2&priority=4&summary=a%3D1%26a%3D2&description=b%3D1%26b%3D2`,
+    },
   ]
 
   for (const testCase of testCases) {
