@@ -134,6 +134,11 @@ describe('parseQueryParam', () => {
       inURL: `${baseURL}?summary=%E3%81%82&description=%E3%81%84`,
       want: new Jira(origin, 1, 1, 'あ', 'い', 3, []),
     },
+    {
+      description: '正常系: &や=もパーセントエンコーディングされる',
+      inURL: `${baseURL}?summary=a%3D1&description=%26b%3D2`,
+      want: new Jira(origin, 1, 1, 'a=1', '&b=2', 3, []),
+    },
   ]
 
   for (const testCase of testCases) {
