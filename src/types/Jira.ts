@@ -13,21 +13,20 @@ export class Jira {
 
   generateURL(): string {
     const qp = [
-      `pid=${this.projectID}`,
-      `issuetype=${this.issueType}`,
-      `priority=${this.priority}`,
-      `summary=${this.summary}`,
+      `pid=${encodeURIComponent(this.projectID)}`,
+      `issuetype=${encodeURIComponent(this.issueType)}`,
+      `priority=${encodeURIComponent(this.priority)}`,
+      `summary=${encodeURIComponent(this.summary)}`,
     ]
     if (this.description !== '') {
-      qp.push(`description=${this.description}`)
+      qp.push(`description=${encodeURIComponent(this.description)}`)
     }
-    this.labels.map((e) => `labels=${e}`).forEach((e) => qp.push(e))
+    this.labels
+      .map((e) => `labels=${encodeURIComponent(e)}`)
+      .forEach((e) => qp.push(e))
 
     const queryParams = qp.join('&')
-    const url = encodeURI(
-      `${this.baseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`
-    )
-
+    const url = `${this.baseURL}/secure/CreateIssueDetails!init.jspa?${queryParams}`
     return url
   }
 

@@ -161,3 +161,34 @@ describe('UIの変更結果に対するテスト', () => {
     })
   }
 })
+
+describe('URLを分解するフォームのテスト', () => {
+  const origin = 'https://example.com'
+  const baseURL = `${origin}/secure/CreateIssueDetails!init.jspa`
+
+  test('正常系: URLを分解するフォームを入力してボタンを押すと各種inputが補完される', async () => {
+    render(<App />)
+
+    const summary = 'sushi'
+
+    fireEvent.change(screen.getByLabelText(/Set parameters from JIRA URL/i), {
+      target: {
+        value: `${baseURL}?pid=9&issuetype=2&priority=3&summary=sushi&description=coffee%26tea`,
+      },
+    })
+    fireEvent.click(await screen.findByTestId('apply-button'))
+
+    expect(screen.getByLabelText(/Jira Base URL/i)).toHaveValue(origin)
+    expect(screen.getByLabelText(/Project ID/i)).toHaveValue(9)
+    expect(screen.getByLabelText(/Issue Type/i)).toHaveValue(2)
+    expect(screen.getByLabelText(/Summary/i)).toHaveValue(summary)
+    expect(screen.getByLabelText(/Description/i)).toHaveValue('coffee&tea')
+
+    const got = await screen.findByTestId('output')
+    expect(got).toHaveTextContent(summary)
+    expect(got).toHaveAttribute(
+      'href',
+      `${baseURL}?pid=9&issuetype=2&priority=3&summary=sushi&description=coffee%26tea`
+    )
+  })
+})
