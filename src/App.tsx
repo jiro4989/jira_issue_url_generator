@@ -64,90 +64,92 @@ function App() {
       <header>
         <h1>JIRA ISSUE URL GENERATOR</h1>
       </header>
-      <div className='CenterArea'>
-      <section>
-        <h2>INPUT</h2>
-        <div>
-          <label className="ComponentLabel">
-            Set parameters from JIRA URL
-            <input
-              className="Input FullWidth"
-              type="text"
-              onChange={(e) => setJIRAURL(e.target.value)}
-              autoFocus
-              placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
-            />
-          </label>
-          <button className="VeryShortWidth" onClick={(e) => applyParams()}>
-            Apply
-          </button>
-        </div>
+      <div className="CenterArea">
+        <section>
+          <h2>INPUT</h2>
+          <div>
+            <label className="ComponentLabel">
+              Set parameters from JIRA URL
+              <input
+                className="Input FullWidth"
+                type="text"
+                onChange={(e) => setJIRAURL(e.target.value)}
+                autoFocus
+                placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
+              />
+            </label>
+            <button className="VeryShortWidth" onClick={(e) => applyParams()}>
+              Apply
+            </button>
+          </div>
 
-        <hr />
+          <hr />
 
-        <InputComponent
-          value={jiraBaseURL}
-          setValue={setJIRABaseURL}
-          type="text"
-          label="Jira Base URL"
-          isRequired={true}
-          placeholder="https://example.com"
-        />
+          <InputComponent
+            value={jiraBaseURL}
+            setValue={setJIRABaseURL}
+            type="text"
+            label="Jira Base URL"
+            isRequired={true}
+            placeholder="https://example.com"
+          />
 
-        <InputComponent
-          value={projectID}
-          setValue={setProjectID}
-          type="number"
-          label="Project ID"
-          isRequired={true}
-          placeholder="1"
-        />
+          <InputComponent
+            value={projectID}
+            setValue={setProjectID}
+            type="number"
+            label="Project ID"
+            isRequired={true}
+            placeholder="1"
+          />
 
-        <InputComponent
-          value={issueType}
-          setValue={setIssueType}
-          type="number"
-          label="Issue Type"
-          isRequired={true}
-          placeholder="1"
-        />
+          <InputComponent
+            value={issueType}
+            setValue={setIssueType}
+            type="number"
+            label="Issue Type"
+            isRequired={true}
+            placeholder="1"
+          />
 
-        <SelectComponent<Priority>
-          value={priority}
-          setValue={setPriority}
-          optionValues={allPriorities}
-          converter={priority2Name}
-          label="Priority"
-        />
+          <SelectComponent<Priority>
+            value={priority}
+            setValue={setPriority}
+            optionValues={allPriorities}
+            converter={priority2Name}
+            label="Priority"
+          />
 
-        <InputComponent
-          value={summary}
-          setValue={setSummary}
-          type="text"
-          label="Summary"
-          isRequired={true}
-          placeholder=""
-        />
+          <InputComponent
+            value={summary}
+            setValue={setSummary}
+            type="text"
+            label="Summary"
+            isRequired={true}
+            placeholder=""
+          />
 
-        <TextareaComponent
-          value={description}
-          setValue={setDescription}
-          label="Description"
-        />
+          <TextareaComponent
+            value={description}
+            setValue={setDescription}
+            label="Description"
+          />
 
-        <InputListComponent
-          values={labels}
-          setValues={setLabels}
-          label="Labels"
-        />
-      </section>
+          <InputListComponent
+            values={labels}
+            setValues={setLabels}
+            label="Labels"
+          />
+        </section>
 
-      <section>
-        <h2>OUTPUT</h2>
-        {generatedURLElement}
-      </section>
+        <section>
+          <h2>OUTPUT</h2>
+          {generatedURLElement}
+        </section>
       </div>
-      <footer>Copyright (C) 2022 <a href="https://github.com/jiro4989">jiro4989</a></footer>
+      <footer>
+        Copyright (C) 2022 <a href="https://github.com/jiro4989">jiro4989</a>
+      </footer>
     </div>
   )
 }
