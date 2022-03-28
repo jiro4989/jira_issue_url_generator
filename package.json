@@ -55,6 +55,6 @@
     "postcss": "^8.4.12",
     "minimist": ">=1.2.6",
     "node-forge": ">=1.3.0",
-    "prettier": "2.6.0"
+    "prettier": "2.6.1"
   }
 }
