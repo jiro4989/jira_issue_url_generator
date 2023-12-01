@@ -1,4 +1,4 @@
-FROM node:20.8.1-alpine
+FROM node:21.2.0-alpine
 
 WORKDIR /app
 ENTRYPOINT ["npm"]
