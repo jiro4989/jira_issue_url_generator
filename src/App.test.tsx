@@ -76,7 +76,7 @@ describe('UIの変更結果に対するテスト', () => {
     expect(got).toHaveTextContent(summary)
     expect(got).toHaveAttribute(
       'href',
-      `${baseURL}?pid=1&issuetype=2&priority=3&summary=sushi&description=coffee`
+      `${baseURL}?pid=1&issuetype=2&priority=3&summary=sushi&description=coffee`,
     )
   })
 
@@ -188,7 +188,7 @@ describe('URLを分解するフォームのテスト', () => {
     expect(got).toHaveTextContent(summary)
     expect(got).toHaveAttribute(
       'href',
-      `${baseURL}?pid=9&issuetype=2&priority=3&summary=sushi&description=coffee%26tea`
+      `${baseURL}?pid=9&issuetype=2&priority=3&summary=sushi&description=coffee%26tea`,
     )
   })
 })

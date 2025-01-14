@@ -8,7 +8,7 @@ export class Jira {
     public summary: string,
     public description: string,
     public priority: number,
-    public labels: string[]
+    public labels: string[],
   ) {}
 
   generateURL(): string {
@@ -49,7 +49,7 @@ export function parseQueryParam(url: string): Jira {
   const summary = urlSearchParams.get('summary') || ''
   const description = urlSearchParams.get('description') || ''
   const priority = parseInt(
-    urlSearchParams.get('priority') || '' + priorityMedium
+    urlSearchParams.get('priority') || '' + priorityMedium,
   )
   const labels = urlSearchParams.getAll('labels')
 
@@ -60,7 +60,7 @@ export function parseQueryParam(url: string): Jira {
     summary,
     description,
     priority,
-    labels
+    labels,
   )
   return jiraURL
 }

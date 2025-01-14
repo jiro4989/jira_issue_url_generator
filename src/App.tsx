@@ -40,7 +40,7 @@ function App() {
     summary as string,
     description,
     priority,
-    labels
+    labels,
   )
   const generatedURLElement = jira.validateURL() ? (
     <div>
