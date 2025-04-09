@@ -17,6 +17,10 @@ image:./docs/toppage.png[toppage]
 JIRAは専用のURLを踏むことで、URLからissuesを作成することができます。
 要約や説明といったissuesの要素はクエリパラメータから設定することができます。
 
+こんな感じの URL です。
+
+* `https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world`
+
 ただし、いきなりissuesを作成するのではなく、issuesを作成する手前の下書き状態までやってくれます。
 実際にissues作成を実行するのは、UIでボタンを押すあなたです。
 
