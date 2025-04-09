@@ -91,6 +91,15 @@ npm run format
 npm test
 ----
 
+=== 未使用パッケージの調査
+
+[source,bash]
+----
+npx depcheck
+----
+
+検出されたけれど無視したいパッケージは .depcheckrc.yaml に追記すること。
+
 === GitHub Pagesの更新
 
 Gitのタグを追加すると更新される。
