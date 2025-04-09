@@ -35,7 +35,7 @@
     "semver": "^7.3.5",
     "typescript": "5.8.3",
     "web-vitals": "3.5.2",
-    "webpack": "^5.64.4",
+    "webpack": "^5.99.5",
     "webpack-dev-server": "^4.6.0"
   },
   "scripts": {
