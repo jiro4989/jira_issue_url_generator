@@ -10,58 +10,93 @@
       ></script>
     <title>JIRA ISSUE URL GENERATOR</title>
   </head>
-  <body>
+
+  <body class="flex flex-col items-center justify-between bg-slate-100">
     <script type="module">
       import { sushi } from './utils.js';
       console.log(sushi());
     </script>
-    <header>
-      <h1>JIRA ISSUE URL GENERATOR</h1>
+
+    <header class="w-2/3 text-center p-8">
+      <h1 class="text-xl">JIRA ISSUE URL GENERATOR</h1>
     </header>
 
-    <section>
-      <h2>Input</h2>
-      <label for="param">
-        Set parameters from JIRA URL
-        <input id="param" type="text" />
-      </label>
-      <label for="base_url">
-        Jira Base URL
-        <input id="base_url" type="text" />
-      </label>
-      <p class="w-4">
-        <label for="project_id">
-          Project ID
-          <input id="project_id" type="number" />
-        </label>
-      </p>
-      <p class="w-4">
-        <label for="issue_type">
-          Issue Type
-          <input id="issue_type" type="number" />
-        </label>
-      </p>
-      <p class="w-4">
-        <label for="priority">
-          Priority
-          <input id="priority" type="text" />
-        </label>
-      </p>
-      <label for="summary">
-        Summary
-        <input id="summary" type="text" />
-      </label>
-      <label for="description">
-        Description
-        <input id="description" type="textarea" />
-      </label>
-    </section>
+    <div class="border rounded p-1 w-2/3">
+      <section class="border-b-2 border-dotted p-2">
+        <h2 class="text-xl p-2">Input</h2>
 
-    <section>
-      <h2>Output</h2>
-    </section>
+        <div class="flex">
+          <label for="param" class="inline-block w-1/2 m-1">
+            Set parameters from JIRA URL
+          </label>
+          <input id="param" type="text" class="bg-white w-1/2 m-1 p-1 rounded" placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"/>
+        </div>
 
-    <footer>
+        <div class="flex">
+          <span class="inline-block w-1/2 m-1"></span>
+          <button class="bg-slate-900 text-white rounded w-1/2 m-1">Apply</button>
+        </div>
+
+        <div class="flex">
+          <label for="base_url" class="inline-block w-1/2 m-1">
+            Jira Base URL
+          </label>
+          <input id="base_url" type="text" class="bg-white w-1/2 m-1 p-1 rounded" placeholder="https://example.com" />
+        </div>
+
+        <div class="flex">
+          <label for="project_id" class="inline-block w-1/2 m-1">
+            Project ID
+          </label>
+          <input id="project_id" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" />
+        </div>
+
+        <div class="flex">
+          <label for="issue_type" class="inline-block w-1/2 m-1">
+            Issue Type
+          </label>
+          <input id="issue_type" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" />
+        </div>
+
+        <div class="flex">
+          <label for="priority" class="inline-block w-1/2 m-1">
+            Priority
+          </label>
+          <select id="priority" class="bg-white w-1/2 m-1 p-1 rounded">
+            <option value="1">Highest</option>
+            <option value="2">High</option>
+            <option value="3" selected>Medium</option>
+            <option value="4">Low</option>
+            <option value="5">Lowest</option>
+          </select>
+        </div>
+
+        <div class="flex">
+          <label for="summary" class="inline-block w-1/2 m-1">
+            Summary
+          </label>
+          <input id="summary" type="text" class="bg-white w-1/2 m-1 p-1 rounded" />
+        </div>
+
+        <div>
+          <label for="description" class="inline-block w-1/2 m-1">
+            Description
+          </label>
+          <textarea id="description" class="bg-white w-full h-64 m-1 p-1 rounded"></textarea>
+        </div>
+      </section>
+
+      <section class="p-2">
+        <h2 class="text-xl p-2">Output</h2>
+
+        <div>
+          <input id="output" type="text" class="bg-white w-full m-1 p-1 rounded" readonly />
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="w-2/3 text-center">
       Copyright (C) 2022
       <a href="https://github.com/jiro4989">jiro4989</a>
       |
