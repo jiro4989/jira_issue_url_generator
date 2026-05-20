@@ -8,15 +8,35 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
       ></script>
+
+    <script type="module">
+      import { generateURL } from './utils.js';
+
+      function generateButtonOnClick() {
+        const baseURL = document.getElementById("baseURL").value
+        const pid = document.getElementById("projectID").value
+        const issueType = document.getElementById("issueType").value
+        const priority = document.getElementById("priority").value
+        const summary = document.getElementById("summary").value
+        const description = document.getElementById("description").value
+        const jira = {
+          baseURL: baseURL,
+          projectID: pid,
+          issueType: issueType,
+          priority: priority,
+          summary: summary,
+          description: description,
+          labels: [], // TODO
+        }
+        const url = generateURL(jira)
+        document.getElementById('output').value = url
+      }
+    </script>
+
     <title>JIRA ISSUE URL GENERATOR</title>
   </head>
 
   <body class="flex flex-col items-center justify-between bg-slate-100">
-    <script type="module">
-      import { sushi } from './utils.js';
-      console.log(sushi());
-    </script>
-
     <header class="w-2/3 text-center p-8">
       <h1 class="text-xl">JIRA ISSUE URL GENERATOR</h1>
     </header>
@@ -38,24 +58,24 @@
         </div>
 
         <div class="flex">
-          <label for="base_url" class="inline-block w-1/2 m-1">
+          <label for="baseURL" class="inline-block w-1/2 m-1">
             Jira Base URL
           </label>
-          <input id="base_url" type="text" class="bg-white w-1/2 m-1 p-1 rounded" placeholder="https://example.com" />
+          <input id="baseURL" type="text" class="bg-white w-1/2 m-1 p-1 rounded" placeholder="https://example.com" />
         </div>
 
         <div class="flex">
-          <label for="project_id" class="inline-block w-1/2 m-1">
+          <label for="projectID" class="inline-block w-1/2 m-1">
             Project ID
           </label>
-          <input id="project_id" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" />
+          <input id="projectID" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" />
         </div>
 
         <div class="flex">
-          <label for="issue_type" class="inline-block w-1/2 m-1">
+          <label for="issueType" class="inline-block w-1/2 m-1">
             Issue Type
           </label>
-          <input id="issue_type" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" />
+          <input id="issueType" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" />
         </div>
 
         <div class="flex">
@@ -88,6 +108,13 @@
 
       <section class="p-2">
         <h2 class="text-xl p-2">Output</h2>
+
+        <div class="flex">
+          <button
+            class="bg-slate-900 text-white rounded w-1/2 m-1"
+            onclick="generateButtonOnClick()"
+            >Generate</button>
+        </div>
 
         <div>
           <input id="output" type="text" class="bg-white w-full m-1 p-1 rounded" readonly />
