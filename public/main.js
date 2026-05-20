@@ -1,3 +1,3 @@
-import { generateURL } from './utils.js';
+import { generateURL } from "./utils.js";
 
 window.mainApp = { generateURL };
