@@ -13,11 +13,25 @@
 
     <script>
       function generateButtonOnClick() {
-        const baseURL = document.getElementById("baseURL").value
+        const baseURLInput = document.getElementById("baseURL");
+        if (!baseURLInput.checkValidity()) {
+          alert("Jira Base URL が不正です");
+          baseURLInput.focus();
+          return;
+        }
+
+        const summaryInput = document.getElementById("summary");
+        if (!summaryInput.checkValidity()) {
+          alert("Summary が不正です");
+          summaryInput.focus();
+          return;
+        }
+
+        const baseURL = baseURLInput.value
         const pid = document.getElementById("projectID").value
         const issueType = document.getElementById("issueType").value
         const priority = document.getElementById("priority").value
-        const summary = document.getElementById("summary").value
+        const summary = summaryInput.value
         const description = document.getElementById("description").value
         const jira = {
           baseURL: baseURL,
@@ -61,21 +75,21 @@
           <label for="baseURL" class="inline-block w-1/2 m-1">
             Jira Base URL
           </label>
-          <input id="baseURL" type="text" class="bg-white w-1/2 m-1 p-1 rounded" placeholder="https://example.com" />
+          <input id="baseURL" type="url" class="bg-white w-1/2 m-1 p-1 rounded" placeholder="https://example.com" required />
         </div>
 
         <div class="flex">
           <label for="projectID" class="inline-block w-1/2 m-1">
             Project ID
           </label>
-          <input id="projectID" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" />
+          <input id="projectID" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" min="1" />
         </div>
 
         <div class="flex">
           <label for="issueType" class="inline-block w-1/2 m-1">
             Issue Type
           </label>
-          <input id="issueType" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" />
+          <input id="issueType" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" min="1" />
         </div>
 
         <div class="flex">
@@ -95,7 +109,7 @@
           <label for="summary" class="inline-block w-1/2 m-1">
             Summary
           </label>
-          <input id="summary" type="text" class="bg-white w-1/2 m-1 p-1 rounded" />
+          <input id="summary" type="text" class="bg-white w-1/2 m-1 p-1 rounded" required />
         </div>
 
         <div>
