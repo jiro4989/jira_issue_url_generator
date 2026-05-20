@@ -9,9 +9,9 @@
       referrerpolicy="no-referrer"
       ></script>
 
-    <script type="module">
-      import { generateURL } from './utils.js';
+    <script type="module" src="main.js"></script>
 
+    <script>
       function generateButtonOnClick() {
         const baseURL = document.getElementById("baseURL").value
         const pid = document.getElementById("projectID").value
@@ -28,7 +28,7 @@
           description: description,
           labels: [], // TODO
         }
-        const url = generateURL(jira)
+        const url = window.mainApp.generateURL(jira)
         document.getElementById('output').value = url
       }
     </script>
@@ -110,6 +110,7 @@
         <h2 class="text-xl p-2">Output</h2>
 
         <div class="flex">
+          <span class="inline-block w-1/2 m-1"></span>
           <button
             class="bg-slate-900 text-white rounded w-1/2 m-1"
             onclick="generateButtonOnClick()"
