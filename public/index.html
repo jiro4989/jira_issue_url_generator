@@ -33,9 +33,31 @@
         const priority = document.getElementById("priority").value
         const summary = summaryInput.value
         const description = document.getElementById("description").value
-        const jira = new window.mainApp.Jira(baseURL, pid, issueType, priority, summary, description, [])
+        const labelElements = document.getElementById("labelElements").querySelectorAll("input");
+        const labels = Array.from(labelElements)
+          .map((label) => label.value)
+          .filter((label) => label !== "");
+
+        const jira = new window.mainApp.Jira(baseURL, pid, issueType, priority, summary, description, labels)
         const url = jira.generateURL()
         document.getElementById('output').value = url
+      }
+
+      function addLabelButtonOnClick() {
+        const labelElements = document.getElementById("labelElements");
+        const labelsInput = document.createElement("input");
+        labelsInput.type = "text";
+        labelsInput.className = "bg-white p-1 rounded";
+        labelsInput.placeholder = "Label";
+        labelElements.appendChild(labelsInput);
+      }
+
+      function deleteLabelsButtonOnClick() {
+        const labelElements = document.getElementById("labelElements");
+        const labels = labelElements.querySelectorAll("input");
+        labels.forEach((label) => {
+          label.remove();
+        });
       }
     </script>
 
@@ -110,6 +132,21 @@
           </label>
           <textarea id="description" class="bg-white w-full h-64 m-1 p-1 rounded"></textarea>
         </div>
+
+        <div class="flex">
+          <label for="labels" class="inline-block w-1/2 m-1">
+            Labels
+          </label>
+          <button
+            class="bg-slate-900 text-white rounded w-1/4 m-1"
+            onclick="addLabelButtonOnClick()"
+            >追加</button>
+          <button
+            class="bg-slate-900 text-white rounded w-1/4 m-1"
+            onclick="deleteLabelsButtonOnClick()"
+            >ラベルをすべて削除</button>
+        </div>
+        <div id="labelElements" class="grid grid-cols-6 gap-2 m-1"></div>
       </section>
 
       <section class="p-2">
