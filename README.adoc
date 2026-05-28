@@ -85,7 +85,7 @@ deno task test
 === ローカルでの動作確認
 
 以下のコマンドで http://localhost:8000 で画面を確認できる。
-Makefile を見れば分かるが、public ディレクトリで
+`deno task` を見れば分かるが、public ディレクトリで
 python の http.server を起動してるだけなんで、サーバ起動できれば何を使っても良い。
 
 [source,bash]
