@@ -41,6 +41,7 @@
         const jira = new window.mainApp.Jira(baseURL, pid, issueType, priority, summary, description, labels)
         const url = jira.generateURL()
         document.getElementById('output').value = url
+        document.getElementById('outputLink').href = url
       }
 
       function addLabelButtonOnClick() {
@@ -160,8 +161,16 @@
             >Direct HTML Links を生成</button>
         </div>
 
-        <div>
-          <input id="output" type="text" class="bg-white w-full m-1 p-1 rounded" readonly />
+        <div class="flex">
+          <input
+            id="output"
+            type="text"
+            class="bg-white w-full m-1 p-1 rounded"
+            readonly
+            onclick="copyToClipboard()"
+            onfocus="this.select()"
+            />
+          <span class="inline-block w-1/6 m-1 p-1">（<a href="#" id="outputLink" class="text-blue-600 underline hover:text-blue-800 hover:no-underline">共有用 URL</a>）</span>
         </div>
       </section>
 
