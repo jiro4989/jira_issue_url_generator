@@ -1,3 +1,0 @@
-ignores:
-  # これを削除すると npm run build が通らなくなる
-  - '@types/jest'
