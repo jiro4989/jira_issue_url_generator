@@ -11,3 +11,7 @@ fmt: public/*.js
 lint:
 	deno lint public/*.js
 	deno lint tests/*
+
+.PHONY: start
+start:
+	cd public && python3 -m http.server 8000
