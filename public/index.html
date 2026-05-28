@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <script
@@ -15,14 +15,14 @@
       function generateButtonOnClick() {
         const baseURLInput = document.getElementById("baseURL");
         if (!baseURLInput.checkValidity()) {
-          alert("Jira Base URL が不正です");
+          alert("Jira Base URL is invalid");
           baseURLInput.focus();
           return;
         }
 
         const summaryInput = document.getElementById("summary");
         if (!summaryInput.checkValidity()) {
-          alert("Summary が不正です");
+          alert("Summary is invalid");
           summaryInput.focus();
           return;
         }
@@ -170,7 +170,7 @@
             onclick="copyToClipboard()"
             onfocus="this.select()"
             />
-          <span class="inline-block w-1/6 m-1 p-1">（<a id="outputLink" class="text-blue-600 underline hover:text-blue-800 hover:no-underline" href="#" >共有用 URL</a>）</span>
+          <span class="inline-block w-1/6 m-1 p-1">（<a id="outputLink" class="text-blue-600 underline hover:text-blue-800 hover:no-underline" href="#" >Share URL</a>）</span>
         </div>
       </section>
 
