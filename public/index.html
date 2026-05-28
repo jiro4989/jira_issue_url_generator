@@ -18,6 +18,8 @@
           return;
         }
 
+        deleteLabelsButtonOnClick();
+
         const jira = window.mainApp.Jira.createByURL(param);
         document.getElementById("baseURL").value = jira.baseURL;
         document.getElementById("projectID").value = jira.projectID;
