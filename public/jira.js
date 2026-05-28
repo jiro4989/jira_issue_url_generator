@@ -48,9 +48,9 @@ class Jira {
       baseURL,
       projectID,
       issueType,
+      priority,
       summary,
       description,
-      priority,
       labels,
     );
   }
