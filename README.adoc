@@ -79,7 +79,7 @@ Deno を使っている。
 
 [source,bash]
 ----
-make test
+deno task test
 ----
 
 === ローカルでの動作確認
@@ -90,7 +90,7 @@ python の http.server を起動してるだけなんで、サーバ起動でき
 
 [source,bash]
 ----
-make start
+deno task start
 ----
 
 === GitHub Pagesの更新
