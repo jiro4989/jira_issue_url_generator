@@ -110,6 +110,7 @@
             class="bg-white w-1/2 m-1 p-1 rounded"
             placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
             onfocus="this.select()"
+            autofocus
             />
         </div>
 
@@ -197,15 +198,23 @@
         </div>
 
         <div class="flex">
+          <label for="output" class="inline-block w-1/2 m-1">
+            Generated Direct HTML Links
+          </label>
           <input
             id="output"
             type="text"
-            class="bg-white w-full m-1 p-1 rounded"
+            class="bg-white w-1/2 m-1 p-1 rounded"
             readonly
-            onclick="copyToClipboard()"
             onfocus="this.select()"
             />
-          <span class="inline-block w-1/6 m-1 p-1">（<a id="outputLink" class="text-blue-600 underline hover:text-blue-800 hover:no-underline" href="#" >Share URL</a>）</span>
+        </div>
+
+        <div class="flex">
+          <label for="outputLink" class="inline-block w-1/2 m-1">
+            Share URL
+          </label>
+          <span class="inline-block w-1/2 m-1 p-1">（<a id="outputLink" class="text-blue-600 underline hover:text-blue-800 hover:no-underline" href="#" >Share URL</a>）</span>
         </div>
       </section>
 
