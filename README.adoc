@@ -61,48 +61,37 @@ inputを入力すると自動で OUTPUT にURLが生成されます。
 
 === 前提条件
 
-Node.jsのバージョンを固定するために nodenv を使ってます。
-以下の手順でNode.jsをセットアップしてください。
+Deno を使っている。
+といってもユニットテスト、フォーマット、Lint のみだが。
 
-[source,bash]
-----
-nodenv install
-----
+* Deno 2.7.14
 
 === 使ってる技術
 
-. TypeScript
-. React.js
+* 素の HTML
+* 素の JavaScript
+* Tailwind CSS
+* TypeScript (ユニットテストでのみ)
 
-=== サーバの起動
+=== ユニットテスト
 
-[source,bash]
-----
-npm start
-----
-
-=== コードフォーマット
+テストを実行すると、コードフォーマットと Lint も同時に実行される。
 
 [source,bash]
 ----
-npm run format
+deno task test
 ----
 
-=== テスト
+=== ローカルでの動作確認
 
-[source,bash]
-----
-npm test
-----
-
-=== 未使用パッケージの調査
+以下のコマンドで http://localhost:8000 で画面を確認できる。
+`deno task` を見れば分かるが、public ディレクトリで
+python の http.server を起動してるだけなんで、サーバ起動できれば何を使っても良い。
 
 [source,bash]
 ----
-npx depcheck
+deno task start
 ----
-
-検出されたけれど無視したいパッケージは .depcheckrc.yaml に追記すること。
 
 === GitHub Pagesの更新
 

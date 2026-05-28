@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss-browser/4.1.13/index.global.js"
+      integrity="sha512-RAOoTi4JqATUmfyj+oyxwAo3JtUeZwLsBpNisDcY5VzvXZARuuaE5zfwUCDVa2LBBUax70uBlO4+eZA1Y/tk0A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      ></script>
+
+    <script type="module" src="main.js"></script>
+
+    <script>
+      function applyParamsFromURL() {
+        const param = document.getElementById("param").value;
+        if (!param) {
+          return;
+        }
+
+        deleteLabelsButtonOnClick();
+
+        const jira = window.mainApp.Jira.createByURL(param);
+        document.getElementById("baseURL").value = jira.baseURL;
+        document.getElementById("projectID").value = jira.projectID;
+        document.getElementById("issueType").value = jira.issueType;
+        document.getElementById("priority").value = jira.priority;
+        document.getElementById("summary").value = jira.summary;
+        document.getElementById("description").value = jira.description;
+        jira.labels.forEach((label) => {
+          document.getElementById("labelElements").appendChild(createLabelInput(label));
+        });
+
+        generateButtonOnClick();
+      }
+
+      function generateButtonOnClick() {
+        const baseURLInput = document.getElementById("baseURL");
+        if (!baseURLInput.checkValidity()) {
+          alert("Jira Base URL is invalid");
+          baseURLInput.focus();
+          return;
+        }
+
+        const summaryInput = document.getElementById("summary");
+        if (!summaryInput.checkValidity()) {
+          alert("Summary is invalid");
+          summaryInput.focus();
+          return;
+        }
+
+        const baseURL = baseURLInput.value
+        const pid = document.getElementById("projectID").value
+        const issueType = document.getElementById("issueType").value
+        const priority = document.getElementById("priority").value
+        const summary = summaryInput.value
+        const description = document.getElementById("description").value
+        const labelElements = document.getElementById("labelElements").querySelectorAll("input");
+        const labels = Array.from(labelElements)
+          .map((label) => label.value)
+          .filter((label) => label !== "");
+
+        const jira = new window.mainApp.Jira(baseURL, pid, issueType, priority, summary, description, labels)
+        const url = jira.generateURL()
+        document.getElementById('output').value = url
+        document.getElementById('outputLink').href = url
+      }
+
+      function createLabelInput(text) {
+        const labelsInput = document.createElement("input");
+        labelsInput.type = "text";
+        labelsInput.className = "bg-white p-1 rounded";
+        labelsInput.placeholder = "Label";
+        labelsInput.value = text;
+        return labelsInput;
+      }
+
+      function addLabelButtonOnClick() {
+        const labelElements = document.getElementById("labelElements");
+        labelElements.appendChild(createLabelInput(""));
+      }
+
+      function deleteLabelsButtonOnClick() {
+        const labelElements = document.getElementById("labelElements");
+        const labels = labelElements.querySelectorAll("input");
+        labels.forEach((label) => {
+          label.remove();
+        });
+      }
+    </script>
+
+    <title>JIRA ISSUE URL GENERATOR</title>
+  </head>
+
+  <body class="flex flex-col items-center justify-between bg-slate-200">
+    <header class="w-2/3 text-center p-2">
+      <h1 class="text-2xl font-bold">JIRA ISSUE URL GENERATOR</h1>
+      <span class="text-lg">You can generate <a class="text-blue-600 underline hover:text-blue-800 hover:no-underline" href="https://confluence.atlassian.com/jirakb/how-to-create-issues-using-direct-html-links-in-jira-server-159474.html">direct HTML links for JIRA</a> in this site.</span>
+    </header>
+
+    <div class="border rounded p-1 w-2/3">
+      <section class="border-b-2 border-dotted p-1">
+        <h2 class="text-xl p-2">Input</h2>
+
+        <div class="flex items-center">
+          <label for="param" class="inline-block w-1/2 m-1">
+            Set parameters from JIRA URL
+          </label>
+          <input
+            id="param"
+            type="text"
+            class="bg-white w-1/2 m-1 p-1 rounded"
+            placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
+            onfocus="this.select()"
+            autofocus
+            />
+        </div>
+
+        <div class="flex items-center">
+          <span class="inline-block w-1/2 m-1"></span>
+          <button
+            class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 text-white rounded w-1/2 m-1 p-1"
+            onclick="applyParamsFromURL()"
+            >Apply</button>
+        </div>
+
+        <div class="flex items-center">
+          <label for="baseURL" class="inline-block w-1/2 m-1">
+            Jira Base URL
+          </label>
+          <input id="baseURL" type="url" class="bg-white w-1/2 m-1 p-1 rounded" placeholder="https://example.com" required />
+        </div>
+
+        <div class="flex items-center">
+          <label for="projectID" class="inline-block w-1/2 m-1">
+            Project ID
+          </label>
+          <input id="projectID" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" min="1" />
+        </div>
+
+        <div class="flex items-center">
+          <label for="issueType" class="inline-block w-1/2 m-1">
+            Issue Type
+          </label>
+          <input id="issueType" type="number" class="bg-white w-1/2 m-1 p-1 rounded" value="1" min="1" />
+        </div>
+
+        <div class="flex items-center">
+          <label for="priority" class="inline-block w-1/2 m-1">
+            Priority
+          </label>
+          <select id="priority" class="bg-white w-1/2 m-1 p-1 rounded">
+            <option value="1">Highest</option>
+            <option value="2">High</option>
+            <option value="3" selected>Medium</option>
+            <option value="4">Low</option>
+            <option value="5">Lowest</option>
+          </select>
+        </div>
+
+        <div class="flex items-center">
+          <label for="summary" class="inline-block w-1/2 m-1">
+            Summary
+          </label>
+          <input id="summary" type="text" class="bg-white w-1/2 m-1 p-1 rounded" required />
+        </div>
+
+        <div>
+          <label for="description" class="inline-block w-1/2 m-1">
+            Description
+          </label>
+          <textarea id="description" class="bg-white w-full h-50 m-1 p-1 rounded"></textarea>
+        </div>
+
+        <div class="flex items-center">
+          <span class="inline-block w-1/2 m-1">
+            Labels
+          </span>
+          <button
+            class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 text-white rounded w-1/4 m-1 p-1"
+            onclick="addLabelButtonOnClick()"
+            >Add</button>
+          <button
+            class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 text-white rounded w-1/4 m-1 p-1"
+            onclick="deleteLabelsButtonOnClick()"
+            >Delete all labels</button>
+        </div>
+        <div id="labelElements" class="grid grid-cols-6 gap-2 m-1"></div>
+      </section>
+
+      <section class="p-1">
+        <h2 class="text-xl p-2">Output</h2>
+
+        <div class="flex items-center">
+          <span class="inline-block w-1/2 m-1"></span>
+          <button
+            class="bg-slate-600 hover:bg-slate-700 active:bg-slate-900 text-white rounded w-1/2 m-1 p-1"
+            onclick="generateButtonOnClick()"
+            >Generate Direct HTML Links</button>
+        </div>
+
+        <div class="flex items-center">
+          <label for="output" class="inline-block w-1/2 m-1">
+            Generated Direct HTML Links
+          </label>
+          <input
+            id="output"
+            type="text"
+            class="bg-white w-1/2 m-1 p-1 rounded"
+            readonly
+            onfocus="this.select()"
+            />
+        </div>
+
+        <div class="flex items-center">
+          <span class="inline-block w-1/2 m-1"></span>
+          <span class="inline-block w-1/2 m-1 p-1">（<a id="outputLink" class="text-blue-600 underline hover:text-blue-800 hover:no-underline" href="#" >Share URL</a>）</span>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="w-2/3 text-center m-2">
+      Copyright (C) 2022
+      <a class="text-blue-600 underline hover:text-blue-800 hover:no-underline" href="https://github.com/jiro4989">jiro4989</a>
+      |
+      <a class="text-blue-600 underline hover:text-blue-800 hover:no-underline" href="https://github.com/jiro4989/jira_issue_url_generator">Repository</a>
+    </footer>
+  </body>
+</html>

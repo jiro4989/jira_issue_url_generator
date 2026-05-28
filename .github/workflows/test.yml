@@ -18,23 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Cache
-        id: cache
-        uses: actions/cache@v4
+      - name: Setup deno
+        uses: denoland/setup-deno@v2
         with:
-          path: |
-            node_modules
-          key: ${{ runner.os }}-${{ hashFiles('Dockerfile') }}-${{ hashFiles('package-lock.json') }}
-      - name: Build docker image
-        run: npm run build-docker
-      - name: Install dependencies
-        run: npm run docker-run -- ci
-        if: steps.cache.outputs.cache-hit != 'true'
-      - name: Check code style
-        run: npm run docker-run -- run format-check
+          deno-version: v2.7.x
+          cache: true
       - name: Test
-        run: npm run docker-run -- run test-coverage
-      - name: Build
-        run: npm run docker-run -- run build
-      - name: Upload test coverage to Codecov
-        uses: codecov/codecov-action@v5
+        run: deno task test
