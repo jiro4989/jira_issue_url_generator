@@ -12,6 +12,26 @@
     <script type="module" src="main.js"></script>
 
     <script>
+      function applyParamsFromURL() {
+        const param = document.getElementById("param").value;
+        if (!param) {
+          return;
+        }
+
+        const jira = window.mainApp.Jira.createByURL(param);
+        document.getElementById("baseURL").value = jira.baseURL;
+        document.getElementById("projectID").value = jira.projectID;
+        document.getElementById("issueType").value = jira.issueType;
+        document.getElementById("priority").value = jira.priority;
+        document.getElementById("summary").value = jira.summary;
+        document.getElementById("description").value = jira.description;
+        jira.labels.forEach((label) => {
+          document.getElementById("labelElements").appendChild(createLabelInput(label));
+        });
+
+        generateButtonOnClick();
+      }
+
       function generateButtonOnClick() {
         const baseURLInput = document.getElementById("baseURL");
         if (!baseURLInput.checkValidity()) {
@@ -44,13 +64,18 @@
         document.getElementById('outputLink').href = url
       }
 
-      function addLabelButtonOnClick() {
-        const labelElements = document.getElementById("labelElements");
+      function createLabelInput(text) {
         const labelsInput = document.createElement("input");
         labelsInput.type = "text";
         labelsInput.className = "bg-white p-1 rounded";
         labelsInput.placeholder = "Label";
-        labelElements.appendChild(labelsInput);
+        labelsInput.value = text;
+        return labelsInput;
+      }
+
+      function addLabelButtonOnClick() {
+        const labelElements = document.getElementById("labelElements");
+        labelElements.appendChild(createLabelInput(""));
       }
 
       function deleteLabelsButtonOnClick() {
@@ -79,12 +104,21 @@
           <label for="param" class="inline-block w-1/2 m-1">
             Set parameters from JIRA URL
           </label>
-          <input id="param" type="text" class="bg-white w-1/2 m-1 p-1 rounded" placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"/>
+          <input
+            id="param"
+            type="text"
+            class="bg-white w-1/2 m-1 p-1 rounded"
+            placeholder="https://example.com/secure/CreateIssueDetails!init.jspa?pid=1&issuetype=1&priority=3&summary=hello_world"
+            onfocus="this.select()"
+            />
         </div>
 
         <div class="flex">
           <span class="inline-block w-1/2 m-1"></span>
-          <button class="bg-slate-600 hover:bg-slate-900 focus:bg-slate-900 text-white rounded w-1/2 m-1">Apply</button>
+          <button
+            class="bg-slate-600 hover:bg-slate-900 focus:bg-slate-900 text-white rounded w-1/2 m-1"
+            onclick="applyParamsFromURL()"
+            >Apply</button>
         </div>
 
         <div class="flex">
