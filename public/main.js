@@ -1,3 +1,3 @@
-import { generateURL } from "./utils.js";
+import Jira from "./jira.js";
 
-window.mainApp = { generateURL };
+window.mainApp = { Jira };

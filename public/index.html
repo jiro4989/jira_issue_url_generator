@@ -33,16 +33,8 @@
         const priority = document.getElementById("priority").value
         const summary = summaryInput.value
         const description = document.getElementById("description").value
-        const jira = {
-          baseURL: baseURL,
-          projectID: pid,
-          issueType: issueType,
-          priority: priority,
-          summary: summary,
-          description: description,
-          labels: [], // TODO
-        }
-        const url = window.mainApp.generateURL(jira)
+        const jira = new window.mainApp.Jira(baseURL, pid, issueType, priority, summary, description, [])
+        const url = jira.generateURL()
         document.getElementById('output').value = url
       }
     </script>
